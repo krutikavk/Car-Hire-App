@@ -8,11 +8,12 @@
 		<version>2.2.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.wip</groupId>
-	<artifactId>sp20-cmpe-202-sec-03-team-project-wip</artifactId>
+	<groupId>com.car-rental</groupId>
+	<artifactId>car-rental-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>car-rental</name>
-	<description>Demo project for Spring Boot</description>
+	<description>APIs for CMPE202 Project</description>
+
 
 	<properties>
 		<java.version>11</java.version>
