@@ -1,15 +1,15 @@
-# sp20-cmpe-202-sec-03-team-project-wip
-# sp20-cmpe-202-sec-03-team-project-wip created by GitHub Classroom
+ sp20-cmpe-202-sec-03-team-project-wip
+ sp20-cmpe-202-sec-03-team-project-wip created by GitHub Classroom
 
 # Project :
 GoCar
 
 
 # Team
-Krutika
-Sathya Sri
-Sai Chaitanya Dasari
-Yeswanth
+1.Krutika
+2.Sathya Sri
+3.Sai Chaitanya Dasari
+4.Yeswanth
 
 
 # Tech Stack:
