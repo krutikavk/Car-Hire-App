@@ -1,5 +1,8 @@
  sp20-cmpe-202-sec-03-team-project-wip
  sp20-cmpe-202-sec-03-team-project-wip created by GitHub Classroom
+ 
+# Sprint Task Sheet
+https://docs.google.com/spreadsheets/d/1bwUoeZ0_PFh3q6xMzNdLJCtQJ6lX0SsjbzNv-Miogr0/edit?usp=sharing
 
 # Project :
 GoCar
