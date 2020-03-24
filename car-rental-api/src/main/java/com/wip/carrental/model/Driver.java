@@ -3,9 +3,15 @@ package com.wip.carrental.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 @Entity
 @Table(name = "driver")
@@ -19,6 +25,7 @@ public class Driver {
 		this.dEmailId = dEmailId;
 		this.dPassword = dPassword;
 	}
+	
 	
 	public String getdLicense() {
 		return dLicense;
@@ -94,7 +101,8 @@ public class Driver {
 	@Column
 	private Date dMembershipEnd;
 	
-	
+	@OneToMany(mappedBy="dcLicense")
+	private Collection<DriverCard> cards = new ArrayList<DriverCard>();
 	
 	
 	
