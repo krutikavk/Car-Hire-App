@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
-@Table(name = "driver")
 public class Driver {
 	
 	public Driver(String dLicense, String dAddress, String dName, String dEmailId, String dPassword) {
@@ -24,6 +23,10 @@ public class Driver {
 		this.dName = dName;
 		this.dEmailId = dEmailId;
 		this.dPassword = dPassword;
+	}
+	
+	public Driver() {
+		
 	}
 	
 	
