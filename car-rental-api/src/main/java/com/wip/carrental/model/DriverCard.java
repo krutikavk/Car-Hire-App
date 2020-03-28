@@ -3,11 +3,10 @@ package com.wip.carrental.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 //need to remove
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class DriverCard {
@@ -19,6 +18,6 @@ public class DriverCard {
 	private int dcCvv;
 	
 	private Date dcExpiry;
-	
-	
+
+
 }
