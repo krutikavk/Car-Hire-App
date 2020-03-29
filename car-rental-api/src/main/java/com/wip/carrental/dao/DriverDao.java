@@ -1,15 +1,10 @@
 package com.wip.carrental.dao;
 
 import com.wip.carrental.model.Driver;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface DriverDao extends CrudRepository<Driver, String> {
 
-public interface DriverDao {
-    List<Driver> getAllDrivers();
-
-    Driver getDriverById(String id);
-
-    void postDriver(Driver employee);
-
-    void deleteDriver(String id);
 }
