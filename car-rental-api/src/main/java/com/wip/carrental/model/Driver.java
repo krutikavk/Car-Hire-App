@@ -1,51 +1,34 @@
 package com.wip.carrental.model;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @Table(name = "driver")
 public class Driver {
 
-
-    @Column
     @Id
+    @NonNull
     private String dLicense;
 
     @Column
     private String dAddress;
     @Column
+    @NonNull
     private String dName;
     @Column
     private String dEmailId;
     @Column
+    @NonNull
     private String dPassword;
-    @Column
+    @Column(nullable = false, updatable = false)
     private Date dMembershipStart;
-    @Column
+    @Column(nullable = false)
     private Date dMembershipEnd;
-
-    @OneToMany(mappedBy = "dcLicense")
-    private Collection<DriverCard> cards = new ArrayList<>();
-
-//    public Driver(String dLicense, String dAddress, String dName, String dEmailId, String dPassword) {
-//        // TODO Auto-generated constructor stub
-//        this.dLicense = dLicense;
-//        this.dAddress = dAddress;
-//        this.dName = dName;
-//        this.dEmailId = dEmailId;
-//        this.dPassword = dPassword;
-//        this.cards = new ArrayList<DriverCard>();
-//    }
-
-//    public Driver() {
-//        this.cards = new ArrayList<DriverCard>();
-//    }
 
 
     public String getdLicense() {
@@ -104,6 +87,14 @@ public class Driver {
 
     public Date getdMembershipEnd() {
         return dMembershipEnd;
+    }
+
+    public void setdMembershipStart(Date dMembershipStart) {
+        this.dMembershipStart = dMembershipStart;
+    }
+
+    public void setdMembershipEnd(Date dMembershipEnd) {
+        this.dMembershipEnd = dMembershipEnd;
     }
 
 }

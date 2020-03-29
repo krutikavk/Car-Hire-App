@@ -1,10 +1,10 @@
-package com.wip.carrental.dao;
+package com.wip.carrental.repository;
 
 import com.wip.carrental.model.Driver;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DriverDao extends CrudRepository<Driver, String> {
+public interface DriverRepository extends CrudRepository<Driver, String> {
 
 }
