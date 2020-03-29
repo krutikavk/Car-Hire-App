@@ -3,11 +3,13 @@ package com.wip.carrental.controller;
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.repository.DriverRepository;
 import com.wip.carrental.model.Driver;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -21,13 +23,36 @@ public class DriverController {
     }
 
     @GetMapping("/drivers/{id}")
-    public Driver getDriverById(@PathVariable String id) {
-        return driverRepository.findById(id).orElse(null);
+    public Optional<Driver> getDriverById(@PathVariable String id) {
+        return driverRepository.findById(id);
     }
 
     @PostMapping("/drivers")
     public ResponseEntity<?> postDriver(@RequestBody Driver driverObj) {
+        driverObj.setdPassword(hashPassword(driverObj.getdPassword()));
+        driverObj.setdMembership();
         return ResponseEntity.ok(driverRepository.save(driverObj));
+    }
+
+    private String hashPassword(String plainTextPassword){
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+    }
+
+    @PostMapping("/drivers/login")
+    public ResponseEntity<?> loginDriver(@RequestBody Driver requestObj) {
+        Driver driver = driverRepository.findById(requestObj.getdLicense()).orElse(null);
+        if (driver != null) {
+            if (checkPass(requestObj.getdPassword(),driver.getdPassword())) {
+                return ResponseEntity.ok(driver);
+            }
+            return ResponseEntity.status(403).eTag("password is not matching").build();
+        }
+
+        return ResponseEntity.notFound().eTag("driver not found").build();
+    }
+
+    private boolean checkPass(String plainPassword, String hashedPassword) {
+        return (BCrypt.checkpw(plainPassword, hashedPassword));
     }
 
     @PutMapping("/drivers/{driverLicense}")

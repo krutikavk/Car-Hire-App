@@ -1,5 +1,6 @@
 package com.wip.carrental.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -12,7 +13,6 @@ import java.util.*;
 public class Driver {
 
     @Id
-    @NonNull
     private String dLicense;
 
     @Column
@@ -20,7 +20,8 @@ public class Driver {
     @Column
     @NonNull
     private String dName;
-    @Column
+    @Column(unique = true)
+    @NonNull
     private String dEmailId;
     @Column
     @NonNull

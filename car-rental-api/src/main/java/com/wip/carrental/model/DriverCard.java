@@ -26,6 +26,7 @@ public class DriverCard {
 	@NonNull
 	private Date dcExpiry;
 
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "dc_license_d_license", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
