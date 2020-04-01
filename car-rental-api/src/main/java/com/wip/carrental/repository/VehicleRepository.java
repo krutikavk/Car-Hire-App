@@ -1,10 +1,10 @@
 package com.wip.carrental.repository;
 
-import com.wip.carrental.model.Vehicles;
+import com.wip.carrental.model.Vehicle;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VehiclesRepository extends CrudRepository<Vehicles, String> {
+public interface VehicleRepository extends CrudRepository<Vehicle, Long> {
 
 }

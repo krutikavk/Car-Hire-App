@@ -1,40 +1,35 @@
 package com.wip.carrental.model;
 
-
-import java.util.Date;
 import java.util.TimeZone;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.lang.NonNull;
 
 
 @Entity
 @Table(name = "vehicles")
-public class Vehicles {
-	
+public class Vehicle {
 
     @Id
-    private int vId ;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private long vId ;
 
     @Column
     private String vName;
     
 	@Column
     @NonNull
-    private String vType;
+	@Enumerated(EnumType.STRING)
+    private VehicleType vType;
     
     @Column
     @NonNull
     private String vLocationCode;
     
-    @Column
+    @Column(columnDefinition = "boolean default false")
     @NonNull
-    private String vStatus;
+    private Boolean vStatus;
     
     @Column
     private String vImageUrl;
@@ -56,7 +51,7 @@ public class Vehicles {
 	private TimeZone time;
 	
 	
-    public int getvId() {
+    public long getvId() {
 		return vId;
 	}
 
@@ -65,14 +60,14 @@ public class Vehicles {
 	}
 
 	public String getvType() {
-		return vType;
+		return vType.toString();
 	}
 
 	public String getvLocationCode() {
 		return vLocationCode;
 	}
 
-	public String getvStatus() {
+	public Boolean getvStatus() {
 		return vStatus;
 	}
 
@@ -100,7 +95,7 @@ public class Vehicles {
 		this.vName = vName;
 	}
 
-	public void setvType(String vType) {
+	public void setvType(VehicleType vType) {
 		this.vType = vType;
 	}
 
@@ -108,7 +103,7 @@ public class Vehicles {
 		this.vLocationCode = vLocationCode;
 	}
 
-	public void setvStatus(String vStatus) {
+	public void setvStatus(Boolean vStatus) {
 		this.vStatus = vStatus;
 	}
 
