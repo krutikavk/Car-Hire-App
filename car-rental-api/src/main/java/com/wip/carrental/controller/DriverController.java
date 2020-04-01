@@ -5,6 +5,7 @@ import com.wip.carrental.repository.DriverRepository;
 import com.wip.carrental.model.Driver;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,15 @@ public class DriverController {
 
     @PostMapping("/drivers")
     public ResponseEntity<?> postDriver(@RequestBody Driver driverObj) {
-        driverObj.setdPassword(hashPassword(driverObj.getdPassword()));
-        driverObj.setdMembership();
-        return ResponseEntity.ok(driverRepository.save(driverObj));
+
+        try {
+            driverObj.setdPassword(hashPassword(driverObj.getdPassword()));
+            driverObj.setdMembership();
+            return ResponseEntity.ok(driverRepository.save(driverObj));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("email id already exists");
+        }
     }
 
     private String hashPassword(String plainTextPassword){
