@@ -1,6 +1,6 @@
 package com.wip.carrental.model;
 
-import com.amazonaws.services.dynamodbv2.xspec.N;
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
