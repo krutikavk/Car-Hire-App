@@ -13,6 +13,7 @@ public class Vehicle {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
     private long vId ;
 
     @Column
@@ -22,10 +23,11 @@ public class Vehicle {
     @NonNull
 	@Enumerated(EnumType.STRING)
     private VehicleType vType;
-    
-    @Column
-    @NonNull
-    private String vLocationCode;
+
+	@NonNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parking_location_id")
+	private ParkingLocation vLocationCode;
     
     @Column(columnDefinition = "boolean default false")
     @NonNull
@@ -63,7 +65,7 @@ public class Vehicle {
 		return vType.toString();
 	}
 
-	public String getvLocationCode() {
+	public ParkingLocation getvLocationCode() {
 		return vLocationCode;
 	}
 
@@ -99,7 +101,7 @@ public class Vehicle {
 		this.vType = vType;
 	}
 
-	public void setvLocationCode(String vLocationCode) {
+	public void setvLocationCode(ParkingLocation vLocationCode) {
 		this.vLocationCode = vLocationCode;
 	}
 
