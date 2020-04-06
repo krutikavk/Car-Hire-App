@@ -23,15 +23,21 @@ Cloud : AWS
 # Abstract
 
 
-# Architecure 
+
+
+
+
+
+
+# Cloud Architecture
+The application wii be designed using cloud native technologies, specifically AWS. The frontend will be served as a static website
 
 ![](CarRental_Architecture.png)
 
 
 
 
-# Cloud Architecture
-The application wii be designed using cloud native technologies, specifically AWS. The frontend will be served as a static website. 
+ 
 
 # Backend Services
 We will be using Java APIs to fetch the values from the SQL database. Since our application will render information on run-time, the non-blocking asynchronous nature of JAVA will help us get good performance.
