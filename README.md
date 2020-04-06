@@ -23,8 +23,9 @@ Cloud : AWS
 # Abstract
 
 
+# Architecure 
 
-
+![](CarRental_Architecture.png)
 
 
 
