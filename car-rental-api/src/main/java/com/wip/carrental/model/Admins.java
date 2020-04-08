@@ -1,14 +1,17 @@
 package com.wip.carrental.model;
 
+
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Admins")
+@Table(name = "admins")
 public class Admins {
-    @Id
+    
+    @Column
+    @NonNull
     private int aEmpId;
 
     @Column
@@ -16,13 +19,14 @@ public class Admins {
     @Column
     @NonNull
     private String aName;
-    @Column(unique = true)
+   
+    @Id
     @NonNull
     private String aEmailId;
+    
     @Column
     @NonNull
     private String aPassword;
-    @Column(nullable = false, updatable = false)
    
 
     public int getaEmpId() {
@@ -50,19 +54,19 @@ public class Admins {
         this.aName = aName;
     }
 
-    public String getdEmailId() {
+    public String getaEmailId() {
         return aEmailId;
     }
 
-    public void setdEmailId(String aEmailId) {
+    public void setaEmailId(String aEmailId) {
         this.aEmailId = aEmailId;
     }
 
-    public String getdPassword() {
+    public String getaPassword() {
         return aPassword;
     }
 
-    public void setdPassword(String aPassword) {
+    public void setaPassword(String aPassword) {
         this.aPassword = aPassword;
     }
 
