@@ -52,6 +52,10 @@ public class Vehicle {
 	@Column(nullable = false)
 	private TimeZone time;
 	
+	@Column
+	private String description;
+	
+	
 	
     public long getvId() {
 		return vId;
