@@ -56,6 +56,12 @@ public class Vehicle {
 	private String description;
 	
 	
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "vehicle")
+    private Reservation reservation;
+	
+	
 	
     public long getvId() {
 		return vId;
