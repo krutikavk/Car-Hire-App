@@ -1,3 +1,4 @@
+/*
 package com.wip.carrental.controller;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +15,12 @@ public class S3Config {
 	
    // @Value("${amazonProperties.accessKey}")
 
-   final String accessKey = "carefull";
+   //final String accessKey = "carefull";
+   final String accessKey = "AKIAIHV2C3OCOLRQCL4A";
     //@Value("${amazonProperties.secretKey}")
 
-   final String secretKey = "carefull" ;
+   //final String secretKey = "carefull" ;
+   final String secretKey = "aC+1e5fKENIEgJN8Y/UgoEU2wPjYa++thzho+StQ";
 
    
     
@@ -30,3 +33,4 @@ public class S3Config {
     }
     
 }
+*/

@@ -13,7 +13,6 @@ public class Vehicle {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
     private long vId ;
 
     @Column
@@ -56,11 +55,12 @@ public class Vehicle {
 	private String description;
 	
 	
+	/*
 	@OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "vehicle")
     private Reservation reservation;
-	
+	*/
 	
 	
     public long getvId() {
@@ -133,6 +133,14 @@ public class Vehicle {
 
 	public void setTime(TimeZone time) {
 		this.time = time;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
