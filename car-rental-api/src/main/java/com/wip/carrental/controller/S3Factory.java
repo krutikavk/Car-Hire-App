@@ -1,5 +1,3 @@
-/*
-
 package com.wip.carrental.controller;
 
 import java.io.ByteArrayInputStream;
@@ -87,4 +85,3 @@ public class S3Factory {
      }
 
 }
-*/

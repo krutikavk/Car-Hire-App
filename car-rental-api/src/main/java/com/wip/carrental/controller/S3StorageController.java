@@ -1,5 +1,3 @@
-
-/*
 package com.wip.carrental.controller;
 
 
@@ -44,7 +42,7 @@ public class S3StorageController extends HttpServlet {
 	
 	 
 	 
-	
+	/**
 	  
 	@GetMapping(path = "/findupload")
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +65,5 @@ public class S3StorageController extends HttpServlet {
             System.out.println(e.getMessage());
         }
     }
-    
+    */
 }
-
-*/
