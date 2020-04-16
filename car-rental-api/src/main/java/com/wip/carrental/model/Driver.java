@@ -30,10 +30,10 @@ public class Driver {
     @Column(nullable = false)
     private Date dMembershipEnd;
     
-    @OneToOne(fetch = FetchType.LAZY,
+    @OneToMany(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "driver")
-    private Reservation reservation;
+    private List<Reservation> reservation;
 
 
     public String getdLicense() {

@@ -1,5 +1,6 @@
 package com.wip.carrental.model;
 
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.persistence.*;
@@ -13,7 +14,6 @@ public class Vehicle {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
     private long vId ;
 
     @Column
@@ -56,10 +56,10 @@ public class Vehicle {
 	private String description;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY,
+	@OneToMany(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "vehicle")
-    private Reservation reservation;
+    private List<Reservation> reservation;
 	
 	
 	

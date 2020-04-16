@@ -8,8 +8,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "reservation")
@@ -20,27 +26,36 @@ public class Reservation{
 	private long reservationId;
 	
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "dc_license", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Driver driver; 
 	
-	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="vehicle_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Vehicle vehicle;
 	
 	@Column
+	@NonNull
 	private Date pickup;
 	
 	@Column
+	@NonNull
 	private int hours;
 	
 	@Column
+	@NonNull
 	private boolean picked;
 	
 	@Column
+	@NonNull
 	private float price;
 	
+	@Column
+	@NonNull
+	private ReservationStatus status;
 	
 	
 
@@ -101,6 +116,14 @@ public class Reservation{
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public ReservationStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ReservationStatus status) {
+		this.status = status;
 	}
 	
 	
