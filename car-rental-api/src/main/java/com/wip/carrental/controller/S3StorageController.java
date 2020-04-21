@@ -31,7 +31,7 @@ public class S3StorageController {
     public List<com.amazonaws.services.s3.model.Bucket> listBuckets(){
         return s3Factory.getAllBuckets();
     }
- 
+
 
     @PostMapping(path = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
     public Map<String,String> uploadFile(@RequestPart(value = "file", required = false) MultipartFile files) throws IOException {

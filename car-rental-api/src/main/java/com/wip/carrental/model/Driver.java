@@ -21,7 +21,7 @@ public class Driver {
     private String dName;
     @Column(unique = true)
     @NonNull
-    private String dEmailId;
+    private String driverEmailId;
     @Column
     @NonNull
     private String dPassword;
@@ -55,12 +55,12 @@ public class Driver {
         this.dName = dName;
     }
 
-    public String getdEmailId() {
-        return dEmailId;
+    public String getdDriverEmailId() {
+        return driverEmailId;
     }
 
-    public void setdEmailId(String dEmailId) {
-        this.dEmailId = dEmailId;
+    public void setdDriverEmailId(String dEmailId) {
+        this.driverEmailId = dEmailId;
     }
 
     public String getdPassword() {

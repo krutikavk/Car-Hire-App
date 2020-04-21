@@ -11,7 +11,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Configuration
 public class S3Config {
-	
+
     @Value("${amazonProperties.accessKey}")
 
     String accessKey;
@@ -19,13 +19,13 @@ public class S3Config {
 
     String secretKey ;
 
-   
-    
+
+
     @Bean
     public  AmazonS3Client amazonS3Client() {
     BasicAWSCredentials creds = new BasicAWSCredentials(this.accessKey, this.secretKey);
     AmazonS3Client  s3Client = (AmazonS3Client)AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
        return s3Client;
     }
-    
+
 }
