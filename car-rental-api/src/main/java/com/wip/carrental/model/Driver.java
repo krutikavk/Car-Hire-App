@@ -29,6 +29,11 @@ public class Driver {
     private Date dMembershipStart;
     @Column(nullable = false)
     private Date dMembershipEnd;
+    
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "driver")
+    private List<Reservation> reservation;
 
 
     public String getdLicense() {

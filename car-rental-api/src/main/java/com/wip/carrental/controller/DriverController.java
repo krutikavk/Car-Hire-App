@@ -34,6 +34,7 @@ public class DriverController {
         try {
             driverObj.setdPassword(hashPassword(driverObj.getdPassword()));
             driverObj.setdMembership();
+            System.out.println("Added driver to the database");
             return ResponseEntity.ok(driverRepository.save(driverObj));
         } catch (Exception e) {
             e.printStackTrace();
