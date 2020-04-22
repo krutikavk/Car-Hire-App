@@ -27,7 +27,7 @@ public class Reservation{
 	
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "dc_license", nullable = false)
+	@JoinColumn(name = "driverEmailId", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Driver driver; 
 	
@@ -51,7 +51,7 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private float price;
+	private double price;
 	
 	@Column
 	@NonNull
@@ -110,12 +110,22 @@ public class Reservation{
 		this.picked = picked;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setPrice() {
+		double basePrice = this.getVehicle().getVehicleBasePrice();
+		int hours = this.getHours();
+		
+		this.price = 0; 
+		
+		//BasePrice will be price per hour, reduced by 1 for every 8 hours booked
+		for( int i = 1; i <= hours; i += 8) {
+			this.price += basePrice * 8;
+			basePrice -= 1;
+		}
+		
 	}
 
 	public ReservationStatus getStatus() {

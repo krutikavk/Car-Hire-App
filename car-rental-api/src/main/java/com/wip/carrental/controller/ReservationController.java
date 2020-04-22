@@ -89,7 +89,7 @@ public class ReservationController {
     
   //Will probably never be used--write a cancel function instead that changes reservation status
     @DeleteMapping("/reservations/{reservationId}")
-	public ResponseEntity<?> deleteVehicle(@PathVariable Long reservationId) {
+	public ResponseEntity<?> deleteReservation(@PathVariable Long reservationId) {
     	
     	//need to add logic to free reserved vehicle up, car returned, review etc
 		if (reservationRepository.existsById(reservationId)) {

@@ -36,8 +36,10 @@ public class Vehicle {
     @Column
     private String vehicleImageUrl;
     
+    
+    //BasePrice is price per hour
     @Column(nullable = false)
-    private long vehicleBasePrice;
+    private double vehicleBasePrice;
     
     @Column
     private String vehicleReview;
@@ -47,7 +49,7 @@ public class Vehicle {
 //    
 //    @Column(nullable = false)
 //    private 	
-  //  AWSCredentials credentials = new BasicAWSCredentials( "AKIAIVPPCCHO*******",  "1WprFFGrAz3vd6Qb6xixTrD+jb*******");
+//    AWSCredentials credentials = new BasicAWSCredentials( "AKIAIVPPCCHO*******",  "1WprFFGrAz3vd6Qb6xixTrD+jb*******");
 	
 	@Column(nullable = false)
 	private TimeZone time;
@@ -113,11 +115,11 @@ public class Vehicle {
 		this.vehicleImageUrl = vehicleImageUrl;
 	}
 
-	public long getVehicleBasePrice() {
+	public double getVehicleBasePrice() {
 		return vehicleBasePrice;
 	}
 
-	public void setVehicleBasePrice(long vehicleBasePrice) {
+	public void setVehicleBasePrice(double vehicleBasePrice) {
 		this.vehicleBasePrice = vehicleBasePrice;
 	}
 
