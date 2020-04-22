@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
+import com.wip.carrental.model.Driver;
 import com.wip.carrental.model.Reservation;
 import com.wip.carrental.model.ReservationStatus;
 import com.wip.carrental.repository.ReservationRepository;
@@ -40,6 +41,18 @@ public class ReservationController {
     //How to pass DL/vehicle both here?
     @PostMapping("/reservations")
     public ResponseEntity<?> postReservation(@RequestBody Reservation reservation) {
+    	Driver driver = reservation.getDriver();
+    	List<Reservation> reservations = driver.getReservations();
+    	
+    	for (Reservation r : reservations) {
+    	    if(r.getStatus() == ReservationStatus.CURRENT || r.getStatus() == ReservationStatus.UPCOMING) {
+    	    	
+    	    	//NEED TO CHANGE RETURN TYPE
+    	    	System.out.println("The user already has a reservation. Please rebook after first reservation is completed.");
+    	    	return ResponseEntity.ok(reservationRepository.save(reservation));
+    	    }
+    	}
+    	
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
 

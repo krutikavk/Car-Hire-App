@@ -36,7 +36,7 @@ public class Driver {
     @OneToMany(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "driver")
-    private List<Reservation> reservation;
+    private List<Reservation> reservations;
 
 
     @NonNull
@@ -73,12 +73,16 @@ public class Driver {
         this.driverMembershipEnd = driverMembershipEnd;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+    
+    public void addReservation(Reservation reservation) {
+    	reservations.add(reservation);
     }
 
     @NonNull
