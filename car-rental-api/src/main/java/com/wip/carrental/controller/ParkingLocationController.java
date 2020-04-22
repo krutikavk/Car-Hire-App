@@ -4,7 +4,6 @@ import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.model.ParkingLocation;
 import com.wip.carrental.repository.ParkingLocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

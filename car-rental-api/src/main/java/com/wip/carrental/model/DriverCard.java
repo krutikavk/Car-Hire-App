@@ -12,49 +12,50 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "driver_card")
+@Table
 public class DriverCard {
-	
+
 	@Id
-	private Long dcNumber;
+	private Long driverCardNumber;
 
 	@Column
 	@NonNull
-	private int dcCvv;
+	private int driverCardCvv;
 
 	@Column
 	@NonNull
-	private Date dcExpiry;
+	private Date driverCardExpiry;
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "dc_license_d_license", nullable = false)
+	@JoinColumn
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Driver driver;
 
-	public Long getDcNumber() {
-		return dcNumber;
+	public Long getDriverCardNumber() {
+		return driverCardNumber;
 	}
 
-	public void setDcNumber(Long dcNumber) {
-		this.dcNumber = dcNumber;
+	public void setDriverCardNumber(Long driverCardNumber) {
+		this.driverCardNumber = driverCardNumber;
 	}
 
-	public int getDcCvv() {
-		return dcCvv;
+	public int getDriverCardCvv() {
+		return driverCardCvv;
 	}
 
-	public void setDcCvv(int dcCvv) {
-		this.dcCvv = dcCvv;
+	public void setDriverCardCvv(int driverCardCvv) {
+		this.driverCardCvv = driverCardCvv;
 	}
 
-	public Date getDcExpiry() {
-		return dcExpiry;
+	@NonNull
+	public Date getDriverCardExpiry() {
+		return driverCardExpiry;
 	}
 
-	public void setDcExpiry(Date dcExpiry) {
-		this.dcExpiry = dcExpiry;
+	public void setDriverCardExpiry(@NonNull Date driverCardExpiry) {
+		this.driverCardExpiry = driverCardExpiry;
 	}
 
 	public Driver getDriver() {
@@ -64,7 +65,4 @@ public class DriverCard {
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
-
-
-
 }

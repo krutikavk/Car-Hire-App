@@ -32,13 +32,13 @@ public class DriverController {
     public ResponseEntity<?> postDriver(@RequestBody Driver driverObj) {
 
         try {
-            driverObj.setdPassword(hashPassword(driverObj.getdPassword()));
+            driverObj.setDriverPassword(hashPassword(driverObj.getDriverPassword()));
             driverObj.setdMembership();
-            System.out.println("Added driver to the database");
+
             return ResponseEntity.ok(driverRepository.save(driverObj));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("email id already exists");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
@@ -48,9 +48,9 @@ public class DriverController {
 
     @PostMapping("/drivers/login")
     public ResponseEntity<?> loginDriver(@RequestBody Driver requestObj) {
-        Driver driver = driverRepository.findById(requestObj.getdLicense()).orElse(null);
+        Driver driver = driverRepository.findById(requestObj.getDriverEmailId()).orElse(null);
         if (driver != null) {
-            if (checkPass(requestObj.getdPassword(),driver.getdPassword())) {
+            if (checkPass(requestObj.getDriverPassword(),driver.getDriverPassword())) {
                 return ResponseEntity.ok(driver);
             }
             return ResponseEntity.status(403).eTag("password is not matching").build();
@@ -66,19 +66,18 @@ public class DriverController {
     @PutMapping("/drivers/{driverLicense}")
     public ResponseEntity<?> updateDriver(@PathVariable String driverLicense, @RequestBody Driver driverRequestBody) {
         return driverRepository.findById(driverLicense).map(driver -> {
-            driver.setdAddress(driverRequestBody.getdAddress());
-            driver.setdMembershipEnd(driverRequestBody.getdMembershipEnd());
-            driver.setdName(driverRequestBody.getdName());
-            driver.setdPassword(driverRequestBody.getdPassword());
+            driver.setDriverAddress(driverRequestBody.getDriverAddress());
+            driver.setDriverName(driverRequestBody.getDriverName());
+            driver.setDriverPassword(hashPassword(driverRequestBody.getDriverPassword()));
             return ResponseEntity.ok(driverRepository.save(driver));
         }).orElseThrow(() -> new ResourceNotFoundException("driverLicense " + driverLicense + " not found"));
     }
 
-    @DeleteMapping("/drivers/{driverLicense}")
-    public ResponseEntity<?> deleteDriver(@PathVariable String driverLicense) {
-        return driverRepository.findById(driverLicense).map(driver -> {
+    @DeleteMapping("/drivers/{driverEmailId}")
+    public ResponseEntity<?> deleteDriver(@PathVariable String driverEmailId) {
+        return driverRepository.findById(driverEmailId).map(driver -> {
             driverRepository.delete(driver);
-            return ResponseEntity.ok("DriverLicense " + driverLicense + " deleted");
-        }).orElseThrow(() -> new ResourceNotFoundException("DriverLicense " + driverLicense + " not found"));
+            return ResponseEntity.ok("driverEmailId " + driverEmailId + " deleted");
+        }).orElseThrow(() -> new ResourceNotFoundException("driverEmailId " + driverEmailId + " not found"));
     }
 }

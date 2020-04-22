@@ -12,23 +12,26 @@ import java.util.*;
 public class Driver {
 
     @Id
-    private String dLicense;
-
-    @Column
-    private String dAddress;
-    @Column
-    @NonNull
-    private String dName;
-    @Column(unique = true)
     @NonNull
     private String driverEmailId;
+
     @Column
     @NonNull
-    private String dPassword;
+    private String driverLicense;
+
+    @Column
+    private String driverAddress;
+    @Column
+    @NonNull
+    private String driverName;
+
+    @Column
+    @NonNull
+    private String driverPassword;
     @Column(nullable = false, updatable = false)
-    private Date dMembershipStart;
+    private Date driverMembershipStart;
     @Column(nullable = false)
-    private Date dMembershipEnd;
+    private Date driverMembershipEnd;
     
     @OneToMany(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
@@ -36,70 +39,83 @@ public class Driver {
     private List<Reservation> reservation;
 
 
-    public String getdLicense() {
-        return dLicense;
+    @NonNull
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setdLicense(String dLicense) {
-        this.dLicense = dLicense;
+    public void setDriverName(@NonNull String driverName) {
+        this.driverName = driverName;
     }
 
-    public String getdAddress() {
-        return dAddress;
+    @NonNull
+    public String getDriverPassword() {
+        return driverPassword;
     }
 
-    public void setdAddress(String dAddress) {
-        this.dAddress = dAddress;
+    public void setDriverPassword(@NonNull String driverPassword) {
+        this.driverPassword = driverPassword;
     }
 
-    public String getdName() {
-        return dName;
+    public Date getDriverMembershipStart() {
+        return driverMembershipStart;
     }
 
-    public void setdName(String dName) {
-        this.dName = dName;
+    public void setDriverMembershipStart(Date driverMembershipStart) {
+        this.driverMembershipStart = driverMembershipStart;
     }
 
-    public String getdDriverEmailId() {
+    public Date getDriverMembershipEnd() {
+        return driverMembershipEnd;
+    }
+
+    public void setDriverMembershipEnd(Date driverMembershipEnd) {
+        this.driverMembershipEnd = driverMembershipEnd;
+    }
+
+    public List<Reservation> getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(List<Reservation> reservation) {
+        this.reservation = reservation;
+    }
+
+    @NonNull
+    public String getDriverEmailId() {
         return driverEmailId;
     }
 
-    public void setdDriverEmailId(String dEmailId) {
-        this.driverEmailId = dEmailId;
+    public void setDriverEmailId(@NonNull String driverEmailId) {
+        this.driverEmailId = driverEmailId;
     }
 
-    public String getdPassword() {
-        return dPassword;
+    @NonNull
+    public String getDriverLicense() {
+        return driverLicense;
     }
 
-    public void setdPassword(String dPassword) {
-        this.dPassword = dPassword;
+    public void setDriverLicense(@NonNull String driverLicense) {
+        this.driverLicense = driverLicense;
     }
 
-    public Date getdMembershipStart() {
-        return dMembershipStart;
+    public String getDriverAddress() {
+        return driverAddress;
+    }
+
+    public void setDriverAddress(String driverAddress) {
+        this.driverAddress = driverAddress;
     }
 
     //This will set start and end of the membership
     public void setdMembership() {
         Calendar cal = Calendar.getInstance();
         Date result = cal.getTime();
-        this.dMembershipStart = result;
+        this.driverMembershipStart = result;
         cal.add(Calendar.MONTH, 6);
         result = cal.getTime();
-        this.dMembershipEnd = result;
+        this.driverMembershipEnd = result;
     }
 
-    public Date getdMembershipEnd() {
-        return dMembershipEnd;
-    }
-
-    public void setdMembershipStart(Date dMembershipStart) {
-        this.dMembershipStart = dMembershipStart;
-    }
-
-    public void setdMembershipEnd(Date dMembershipEnd) {
-        this.dMembershipEnd = dMembershipEnd;
-    }
 
 }

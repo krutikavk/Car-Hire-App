@@ -24,32 +24,32 @@ public class DriverCardController {
     @Autowired
     private DriverRepository driverRepository;
 
-    @GetMapping("/drivers/{driverLicense}/cards")
-    public Optional<List<DriverCard>> getDriverCardsByLicense(@PathVariable String driverLicense) {
-        return driverRepository.findById(driverLicense).map(driver ->
+    @GetMapping("/drivers/{driverEmailId}/cards")
+    public Optional<List<DriverCard>> getDriverCardsByLicense(@PathVariable String driverEmailId) {
+        return driverRepository.findById(driverEmailId).map(driver ->
                 driverCardRepository.findDriverCardsByDriver(driver)
         );
     }
 
-    @PostMapping("/drivers/{driverLicense}/cards")
-    public DriverCard postDriverCard(@PathVariable String driverLicense, @Valid @RequestBody DriverCard driverCard) {
-        return driverRepository.findById(driverLicense).map(driver -> {
+    @PostMapping("/drivers/{driverEmailId}/cards")
+    public DriverCard postDriverCard(@PathVariable String driverEmailId, @Valid @RequestBody DriverCard driverCard) {
+        return driverRepository.findById(driverEmailId).map(driver -> {
             driverCard.setDriver(driver);
             return driverCardRepository.save(driverCard);
-        }).orElseThrow(() -> new ResourceNotFoundException("driverLicense " + driverLicense + " not found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("driverEmailId " + driverEmailId + " not found"));
     }
 
-    @DeleteMapping("/drivers/{driverLicense}/cards/{cardNumber}")
-    public ResponseEntity<?> deleteDriverCard(@PathVariable String driverLicense, @PathVariable Long cardNumber) {
+    @DeleteMapping("/drivers/{driverEmailId}/cards/{cardNumber}")
+    public ResponseEntity<?> deleteDriverCard(@PathVariable String driverEmailId, @PathVariable Long cardNumber) {
 
-        Driver driver = driverRepository.findById(driverLicense).orElse(null);
+        Driver driver = driverRepository.findById(driverEmailId).orElse(null);
         if (driver != null) {
-            DriverCard card = driverCardRepository.findByDriverAndDcNumber(driver, cardNumber).orElse(null);
+            DriverCard card = driverCardRepository.findByDriverAndDriverCardNumber(driver, cardNumber).orElse(null);
             if (card != null) {
                 driverCardRepository.delete(card);
-                return ResponseEntity.ok("driverLicense " + driverLicense + "cardNumber " + cardNumber + " deleted");
+                return ResponseEntity.ok("driverEmailId " + driverEmailId + "cardNumber " + cardNumber + " deleted");
             }
         }
-        throw new ResourceNotFoundException("driverLicense " + driverLicense + "cardNumber " + cardNumber + " not found");
+        throw new ResourceNotFoundException("driverEmailId " + driverEmailId + "cardNumber " + cardNumber + " not found");
     }
 }

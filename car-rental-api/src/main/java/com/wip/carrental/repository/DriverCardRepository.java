@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface DriverCardRepository extends CrudRepository<DriverCard, Long> {
     List<DriverCard> findDriverCardsByDriver(Driver driver);
 
-    Optional<DriverCard> findByDriverAndDcNumber(Driver driver, Long dcNumber);
+    Optional<DriverCard> findByDriverAndDriverCardNumber(Driver driver, Long dcNumber);
 
 }

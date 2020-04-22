@@ -26,10 +26,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String emailid) throws UsernameNotFoundException {
 
-        Driver driver = driverRepository.findFirstByDriverEmailId(emailid).orElse(null);
+        Driver driver = driverRepository.findById(emailid).orElse(null);
         Admins admins = adminsRepository.findById(emailid).orElse(null);
         if (driver != null) {
-            return new User(driver.getdDriverEmailId(), driver.getdPassword(),
+            return new User(driver.getDriverEmailId(), driver.getDriverPassword(),
                     new ArrayList<>());
         } else if (admins != null) {
             return new User(admins.getaEmailId(), admins.getaPassword(),

@@ -14,33 +14,33 @@ public class Vehicle {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private long vId ;
+    private long vehicleId;
 
     @Column
-    private String vName;
+    private String vehicleName;
     
 	@Column
     @NonNull
 	@Enumerated(EnumType.STRING)
-    private VehicleType vType;
+    private VehicleType vehicleType;
 
 	@NonNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parking_location_id")
-	private ParkingLocation vLocationCode;
+	private ParkingLocation parkingLocation;
     
     @Column(columnDefinition = "boolean default false")
     @NonNull
-    private Boolean vStatus;
+    private Boolean vehicleStatus;
     
     @Column
-    private String vImageUrl;
+    private String vehicleImageUrl;
     
     @Column(nullable = false)
-    private long vBasePrice;
+    private long vehicleBasePrice;
     
     @Column
-    private String vReview;
+    private String vehicleReview;
    
 //    @Column(nullable = false)
 //    private  
@@ -60,85 +60,96 @@ public class Vehicle {
             cascade =  CascadeType.ALL,
             mappedBy = "vehicle")
     private List<Reservation> reservation;
-	
-	
-	
-    public long getvId() {
-		return vId;
+
+
+	public long getVehicleId() {
+		return vehicleId;
 	}
 
-	public String getvName() {
-		return vName ;
+	public void setVehicleId(long vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
-	public String getvType() {
-		return vType.toString();
+	public String getVehicleName() {
+		return vehicleName;
 	}
 
-	public ParkingLocation getvLocationCode() {
-		return vLocationCode;
+	public void setVehicleName(String vehicleName) {
+		this.vehicleName = vehicleName;
 	}
 
-	public Boolean getvStatus() {
-		return vStatus;
+	@NonNull
+	public VehicleType getVehicleType() {
+		return vehicleType;
 	}
 
-	public String getvImageUrl() {
-		return vImageUrl;
+	public void setVehicleType(@NonNull VehicleType vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 
-	public long getvBasePrice() {
-		return vBasePrice;
+	@NonNull
+	public ParkingLocation getParkingLocation() {
+		return parkingLocation;
 	}
 
-	public String getvReview() {
-		return vReview;
+	public void setParkingLocation(@NonNull ParkingLocation parkingLocation) {
+		this.parkingLocation = parkingLocation;
+	}
+
+	@NonNull
+	public Boolean getVehicleStatus() {
+		return vehicleStatus;
+	}
+
+	public void setVehicleStatus(@NonNull Boolean vehicleStatus) {
+		this.vehicleStatus = vehicleStatus;
+	}
+
+	public String getVehicleImageUrl() {
+		return vehicleImageUrl;
+	}
+
+	public void setVehicleImageUrl(String vehicleImageUrl) {
+		this.vehicleImageUrl = vehicleImageUrl;
+	}
+
+	public long getVehicleBasePrice() {
+		return vehicleBasePrice;
+	}
+
+	public void setVehicleBasePrice(long vehicleBasePrice) {
+		this.vehicleBasePrice = vehicleBasePrice;
+	}
+
+	public String getVehicleReview() {
+		return vehicleReview;
+	}
+
+	public void setVehicleReview(String vehicleReview) {
+		this.vehicleReview = vehicleReview;
 	}
 
 	public TimeZone getTime() {
 		return time;
 	}
 
-	public void setvId(int vId) {
-		this.vId = vId;
-	}
-
-	public void setvName(String vName) {
-		this.vName = vName;
-	}
-
-	public void setvType(VehicleType vType) {
-		this.vType = vType;
-	}
-
-	public void setvLocationCode(ParkingLocation vLocationCode) {
-		this.vLocationCode = vLocationCode;
-	}
-
-	public void setvStatus(Boolean vStatus) {
-		this.vStatus = vStatus;
-	}
-
-	public void setvImageUrl(String vImageUrl) {
-		this.vImageUrl = vImageUrl;
-	}
-
-	public void setvBasePrice(long vBasePrice) {
-		this.vBasePrice = vBasePrice;
-	}
-
-	public void setvReview(String vReview) {
-		this.vReview = vReview;
-	}
-
 	public void setTime(TimeZone time) {
 		this.time = time;
 	}
 
+	public String getDescription() {
+		return description;
+	}
 
-	
-	
-	
-	  
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
+	public List<Reservation> getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(List<Reservation> reservation) {
+		this.reservation = reservation;
+	}
 }
