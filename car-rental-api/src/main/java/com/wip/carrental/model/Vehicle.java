@@ -29,9 +29,10 @@ public class Vehicle {
 	@JoinColumn(name = "parking_location_id")
 	private ParkingLocation parkingLocation;
     
-    @Column(columnDefinition = "boolean default false")
+    @Column
     @NonNull
-    private Boolean vehicleStatus;
+    @Enumerated(EnumType.STRING)
+    private VehicleStatus vehicleStatus;
     
     @Column
     private String vehicleImageUrl;
@@ -39,6 +40,7 @@ public class Vehicle {
     
     //BasePrice is price per hour
     @Column(nullable = false)
+    @NonNull
     private double vehicleBasePrice;
     
     @Column
@@ -99,11 +101,11 @@ public class Vehicle {
 	}
 
 	@NonNull
-	public Boolean getVehicleStatus() {
+	public VehicleStatus getStatus() {
 		return vehicleStatus;
 	}
 
-	public void setVehicleStatus(@NonNull Boolean vehicleStatus) {
+	public void setStatus(@NonNull VehicleStatus vehicleStatus) {
 		this.vehicleStatus = vehicleStatus;
 	}
 

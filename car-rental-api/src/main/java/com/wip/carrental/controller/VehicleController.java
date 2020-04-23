@@ -34,13 +34,20 @@ public class VehicleController {
 		return vehicleRepository.findById(vehicleId);
 	}
 
+	//Need to track parking location capacity here when adding a vehicle
 	@PostMapping("/vehicles")
-	public ResponseEntity<?> postVehicle(@RequestBody Vehicle vehicle, @RequestParam(value = "parking_location_id", required = false) Long parking_location_id) {
+	public ResponseEntity<?> postVehicle(@RequestBody Vehicle vehicle, @RequestParam(value = "parking_location_id") Long parking_location_id) {
+		
+		System.out.println("-------INSIDE POST-------");
+		System.out.println("parking_location_id: " + parking_location_id);
+		
 		
 		ParkingLocation parkingLocation = parkingLocationRepository.findById(parking_location_id).orElse(null);
 		
 		if(parkingLocation != null ) {
+			System.out.println("--------TRYING TO SET parkingLocation--------");
 			vehicle.setParkingLocation(parkingLocation);
+			System.out.println("--------SET parkingLocation--------");
 			return ResponseEntity.ok(vehicleRepository.save(vehicle));
 			
 		} else {

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -32,7 +33,7 @@ public class Reservation{
 	private Driver driver; 
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="vehicle_id")
+	@JoinColumn(name="vehicle_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Vehicle vehicle;
@@ -43,7 +44,8 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private int hours;
+	@Max(value = 72)
+	private Integer hours;
 	
 	@Column
 	@NonNull
@@ -94,11 +96,11 @@ public class Reservation{
 		this.pickup = pickup;
 	}
 
-	public int getHours() {
+	public Integer getHours() {
 		return hours;
 	}
 
-	public void setHours(int hours) {
+	public void setHours(Integer hours) {
 		this.hours = hours;
 	}
 
@@ -114,6 +116,7 @@ public class Reservation{
 		return price;
 	}
 
+	//Varying price wrt hours booked
 	public void setPrice() {
 		double basePrice = this.getVehicle().getVehicleBasePrice();
 		int hours = this.getHours();
@@ -135,10 +138,6 @@ public class Reservation{
 	public void setStatus(ReservationStatus status) {
 		this.status = status;
 	}
-	
-	
-	
-	
 	
 	
 }
