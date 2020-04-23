@@ -33,6 +33,11 @@ public class Driver {
     @Column(nullable = false)
     private Date driverMembershipEnd;
     
+    
+    //Do not provide this value in POST data, should only be changed via admin login
+    @Column
+    private Double memberShipFee = 50.0;
+    
     @OneToMany(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "driver")
@@ -120,6 +125,14 @@ public class Driver {
         result = cal.getTime();
         this.driverMembershipEnd = result;
     }
+
+	public Double getMemberShipFee() {
+		return memberShipFee;
+	}
+
+	public void setMemberShipFee(Double memberShipFee) {
+		this.memberShipFee = memberShipFee;
+	}
 
 
 }

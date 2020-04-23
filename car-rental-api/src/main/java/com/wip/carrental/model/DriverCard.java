@@ -20,7 +20,7 @@ public class DriverCard {
 
 	@Column
 	@NonNull
-	private int driverCardCvv;
+	private Integer driverCardCvv;
 
 	@Column
 	@NonNull
@@ -41,11 +41,11 @@ public class DriverCard {
 		this.driverCardNumber = driverCardNumber;
 	}
 
-	public int getDriverCardCvv() {
+	public Integer getDriverCardCvv() {
 		return driverCardCvv;
 	}
 
-	public void setDriverCardCvv(int driverCardCvv) {
+	public void setDriverCardCvv(Integer driverCardCvv) {
 		this.driverCardCvv = driverCardCvv;
 	}
 
