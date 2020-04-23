@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,17 +39,16 @@ public class VehicleController {
 	@PostMapping("/vehicles")
 	public ResponseEntity<?> postVehicle(@RequestBody Vehicle vehicle, @RequestParam(value = "parking_location_id") Long parking_location_id) {
 		
-		System.out.println("-------INSIDE POST-------");
-		System.out.println("parking_location_id: " + parking_location_id);
-		
-		
 		ParkingLocation parkingLocation = parkingLocationRepository.findById(parking_location_id).orElse(null);
 		
 		if(parkingLocation != null ) {
-			System.out.println("--------TRYING TO SET parkingLocation--------");
-			vehicle.setParkingLocation(parkingLocation);
-			System.out.println("--------SET parkingLocation--------");
-			return ResponseEntity.ok(vehicleRepository.save(vehicle));
+			if(parkingLocation.getCapacity() > parkingLocation.getFilledSpots()) {
+				vehicle.setParkingLocation(parkingLocation);
+				parkingLocation.setFilledSpots(parkingLocation.getFilledSpots() + 1);
+				return ResponseEntity.ok(vehicleRepository.save(vehicle)); 
+			} else {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parking location is full");
+			}
 			
 		} else {
 			throw new ResourceNotFoundException("Parking Location with ID " + parking_location_id + " not found"); 

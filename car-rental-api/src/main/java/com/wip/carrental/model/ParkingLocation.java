@@ -17,6 +17,9 @@ public class ParkingLocation {
     @Column
     @NonNull
     private Integer capacity;
+    
+    @Column
+    private Integer filledSpots = 0;
 
     @Column
     @NonNull
@@ -60,5 +63,14 @@ public class ParkingLocation {
     public void setAddress(@NonNull String address) {
         this.address = address;
     }
+
+	public Integer getFilledSpots() {
+		return filledSpots;
+	}
+
+	public void setFilledSpots(Integer filledSpots) {
+		this.filledSpots = filledSpots;
+	}
+
 
 }
