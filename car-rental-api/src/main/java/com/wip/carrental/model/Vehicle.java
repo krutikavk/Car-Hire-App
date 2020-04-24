@@ -25,7 +25,7 @@ public class Vehicle {
     private VehicleType vehicleType;
 
 	@NonNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "parking_location_id")
 	private ParkingLocation parkingLocation;
     
