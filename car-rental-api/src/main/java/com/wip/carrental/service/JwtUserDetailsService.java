@@ -32,7 +32,7 @@ public class JwtUserDetailsService implements UserDetailsService {
             return new User(driver.getDriverEmailId(), driver.getDriverPassword(),
                     new ArrayList<>());
         } else if (admins != null) {
-            return new User(admins.getaEmailId(), admins.getaPassword(),
+            return new User(admins.getadminEmailId(), admins.getadminPassword(),
                     new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + emailid);

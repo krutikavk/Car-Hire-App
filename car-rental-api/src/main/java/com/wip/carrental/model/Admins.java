@@ -12,62 +12,62 @@ public class Admins {
     
     @Column
     @NonNull
-    private int aEmpId;
+    private int adminEmpId;
 
     @Column
-    private String aAddress;
+    private String adminAddress;
     @Column
     @NonNull
-    private String aName;
+    private String adminName;
    
     @Id
     @NonNull
-    private String aEmailId;
+    private String adminEmailId;
     
     @Column
     @NonNull
-    private String aPassword;
+    private String adminPassword;
    
 
-    public int getaEmpId() {
-        return aEmpId;
+    public int getadminEmpId() {
+        return adminEmpId;
     }
 
-    public void setaEmpId(int aEmpId) {
-        this.aEmpId = aEmpId;
+    public void setadminEmpId(int adminEmpId) {
+        this.adminEmpId = adminEmpId;
     }
     
     
-    public String getaAddress() {
-        return aAddress;
+    public String getadminAddress() {
+        return adminAddress;
     }
 
-    public void setaAddress(String aAddress) {
-        this.aAddress = aAddress;
+    public void setadminAddress(String aAddress) {
+        this.adminAddress = adminAddress;
     }
     
-    public String getaName() {
-        return aName;
+    public String getadminName() {
+        return adminName;
     }
 
-    public void setaName(String aName) {
-        this.aName = aName;
+    public void setadminName(String adminName) {
+        this.adminName = adminName;
     }
 
-    public String getaEmailId() {
-        return aEmailId;
+    public String getadminEmailId() {
+        return adminEmailId;
     }
 
-    public void setaEmailId(String aEmailId) {
-        this.aEmailId = aEmailId;
+    public void setadminEmailId(String adminEmailId) {
+        this.adminEmailId = adminEmailId;
     }
 
-    public String getaPassword() {
-        return aPassword;
+    public String getadminPassword() {
+        return adminPassword;
     }
 
-    public void setaPassword(String aPassword) {
-        this.aPassword = aPassword;
+    public void setadminPassword(String aPassword) {
+        this.adminPassword = adminPassword;
     }
 
 

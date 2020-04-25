@@ -23,8 +23,7 @@ public class AdminsController {
     public ResponseEntity<?> postAdmin(@RequestBody Admins adminObj) {
 
         try {
-            adminObj.setaPassword(hashPassword(adminObj.getaPassword()));
-
+            adminObj.setadminPassword(hashPassword(adminObj.getadminPassword()));
             return ResponseEntity.ok(adminsRepository.save(adminObj));
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,9 +37,9 @@ public class AdminsController {
 
     @PostMapping("/admins/login")
     public ResponseEntity<?> loginAdmin(@RequestBody Admins requestObj) {
-        Admins admin = adminsRepository.findById(requestObj.getaEmailId()).orElse(null);
+        Admins admin = adminsRepository.findById(requestObj.getadminEmailId()).orElse(null);
         if (admin != null) {
-            if (checkPass(requestObj.getaPassword(), admin.getaPassword())) {
+            if (checkPass(requestObj.getadminPassword(), admin.getadminPassword())) {
                 return ResponseEntity.ok(admin);
             }
             return ResponseEntity.status(403).eTag("password is not matching").build();
@@ -52,13 +51,14 @@ public class AdminsController {
         return (BCrypt.checkpw(plainPassword, hashedPassword));
     }
 
-    @PutMapping("/admins/{aEmpId}")
-    public ResponseEntity<?> updateAdmin(@PathVariable String aEmpId, @RequestBody Admins adminRequestBody) {
-        return adminsRepository.findById(aEmpId).map(admin -> {
-            admin.setaAddress(adminRequestBody.getaAddress());
-            admin.setaName(adminRequestBody.getaName());
-            admin.setaPassword(hashPassword(adminRequestBody.getaPassword()));
+    @PutMapping("/admins/{adminEmailId}")
+    public ResponseEntity<?> updateAdmin(@PathVariable String adminEmailId, @RequestBody Admins adminRequestBody) {
+        return adminsRepository.findById(adminEmailId).map(admin -> {
+            admin.setadminAddress(adminRequestBody.getadminAddress());
+            admin.setadminName(adminRequestBody.getadminName());
+            admin.setadminEmpId(adminRequestBody.getadminEmpId());
+            admin.setadminPassword(hashPassword(adminRequestBody.getadminPassword()));
             return ResponseEntity.ok(adminsRepository.save(admin));
-        }).orElseThrow(() -> new ResourceNotFoundException("Email Id " + aEmpId + " not found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("Email Id " + adminEmailId + " not found"));
     }
 }
