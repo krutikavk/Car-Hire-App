@@ -4,6 +4,10 @@
 # Sprint Task Sheet
 https://docs.google.com/spreadsheets/d/1bwUoeZ0_PFh3q6xMzNdLJCtQJ6lX0SsjbzNv-Miogr0/edit?usp=sharing
 
+
+#Design Doc
+https://docs.google.com/document/d/1DM46SGXyhCMIH70hC72ufU-x_5uT-EtUg1gDs10Lwmk/edit
+
 # Project :
 GoCar
 
