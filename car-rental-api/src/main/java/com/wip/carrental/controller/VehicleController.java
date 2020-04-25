@@ -56,6 +56,20 @@ public class VehicleController {
 		
 	}
 
+
+	@PutMapping("/vehicles/{vehicleId}")
+	public ResponseEntity<?> updateVehicle(@PathVariable Long vehicleId, @RequestBody Vehicle vehicleRequestBody) {
+		return vehicleRepository.findById(vehicleId).map(vehicle -> {
+			vehicle.setVehicleName(vehicleRequestBody.getVehicleName());
+			vehicle.setDescription(vehicleRequestBody.getDescription());
+			vehicle.setVehicleBasePrice(vehicleRequestBody.getVehicleBasePrice());
+			vehicle.setVehicleType(vehicleRequestBody.getVehicleType());
+			vehicle.setParkingLocation(vehicleRequestBody.getParkingLocation());
+			vehicle.setStatus(vehicleRequestBody.getStatus());
+			return ResponseEntity.ok(vehicleRepository.save(vehicle));
+		}).orElseThrow(() -> new ResourceNotFoundException("Vehicle ID " + vehicleId + " not found"));
+	}
+
 	@DeleteMapping("vehicles/{vehicleId}")
 	public ResponseEntity<?> deleteVehicle(@PathVariable Long vehicleId) {
 		if (vehicleRepository.existsById(vehicleId)) {

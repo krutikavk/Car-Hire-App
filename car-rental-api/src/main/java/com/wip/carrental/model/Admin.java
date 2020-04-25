@@ -29,14 +29,6 @@ public class Admin {
     private String adminPassword;
    
 
-//    public int getadminEmpId() {
-//        return adminEmpId;
-//    }
-//
-//    public void setadminEmpId(int adminEmpId) {
-//        this.adminEmpId = adminEmpId;
-//    }
-
 
     public String getAdminAddress() {
         return adminAddress;
