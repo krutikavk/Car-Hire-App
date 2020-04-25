@@ -8,11 +8,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "admins")
-public class Admins {
+public class Admin {
     
-    @Column
-    @NonNull
-    private int adminEmpId;
+
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private int adminEmpId;
 
     @Column
     private String adminAddress;
@@ -29,46 +29,44 @@ public class Admins {
     private String adminPassword;
    
 
-    public int getadminEmpId() {
-        return adminEmpId;
-    }
+//    public int getadminEmpId() {
+//        return adminEmpId;
+//    }
+//
+//    public void setadminEmpId(int adminEmpId) {
+//        this.adminEmpId = adminEmpId;
+//    }
 
-    public void setadminEmpId(int adminEmpId) {
-        this.adminEmpId = adminEmpId;
-    }
-    
-    
-    public String getadminAddress() {
+
+    public String getAdminAddress() {
         return adminAddress;
     }
 
-    public void setadminAddress(String aAddress) {
+    public void setAdminAddress(String adminAddress) {
         this.adminAddress = adminAddress;
     }
-    
-    public String getadminName() {
+
+    public String getAdminName() {
         return adminName;
     }
 
-    public void setadminName(String adminName) {
+    public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
 
-    public String getadminEmailId() {
+    public String getAdminEmailId() {
         return adminEmailId;
     }
 
-    public void setadminEmailId(String adminEmailId) {
+    public void setAdminEmailId(String adminEmailId) {
         this.adminEmailId = adminEmailId;
     }
 
-    public String getadminPassword() {
+    public String getAdminPassword() {
         return adminPassword;
     }
 
-    public void setadminPassword(String aPassword) {
+    public void setAdminPassword(String adminPassword) {
         this.adminPassword = adminPassword;
     }
-
-
 }

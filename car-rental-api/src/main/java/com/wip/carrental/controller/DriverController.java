@@ -55,7 +55,6 @@ public class DriverController {
             }
             return ResponseEntity.status(403).eTag("password is not matching").build();
         }
-
         return ResponseEntity.notFound().eTag("driver not found").build();
     }
 

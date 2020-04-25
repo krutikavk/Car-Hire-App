@@ -1,7 +1,7 @@
 package com.wip.carrental.service;
 
 
-import com.wip.carrental.model.Admins;
+import com.wip.carrental.model.Admin;
 import com.wip.carrental.model.Driver;
 import com.wip.carrental.repository.AdminsRepository;
 import com.wip.carrental.repository.DriverRepository;
@@ -27,12 +27,12 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String emailid) throws UsernameNotFoundException {
 
         Driver driver = driverRepository.findById(emailid).orElse(null);
-        Admins admins = adminsRepository.findById(emailid).orElse(null);
+        Admin admin = adminsRepository.findById(emailid).orElse(null);
         if (driver != null) {
             return new User(driver.getDriverEmailId(), driver.getDriverPassword(),
                     new ArrayList<>());
-        } else if (admins != null) {
-            return new User(admins.getadminEmailId(), admins.getadminPassword(),
+        } else if (admin != null) {
+            return new User(admin.getAdminEmailId(), admin.getAdminPassword(),
                     new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + emailid);
