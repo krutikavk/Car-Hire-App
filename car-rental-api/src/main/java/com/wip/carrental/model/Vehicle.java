@@ -7,6 +7,11 @@ import javax.persistence.*;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "vehicles")
@@ -59,11 +64,11 @@ public class Vehicle {
 	@Column
 	private String description;
 	
-	
-	@OneToMany(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
+	@OneToMany(cascade =  CascadeType.ALL,
             mappedBy = "vehicle")
+	 @JsonIgnoreProperties("vehicle")
     private List<Reservation> reservation;
+	
 
 
 	public long getVehicleId() {
@@ -149,6 +154,7 @@ public class Vehicle {
 		this.description = description;
 	}
 
+	//@JsonIgnore
 	public List<Reservation> getReservation() {
 		return reservation;
 	}

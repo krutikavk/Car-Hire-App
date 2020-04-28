@@ -2,6 +2,11 @@ package com.wip.carrental.model;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 
@@ -38,9 +43,10 @@ public class Driver {
     @Column
     private Double memberShipFee = 50.0;
     
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
+    
+    @OneToMany(fetch = FetchType.EAGER, cascade =  CascadeType.ALL,
             mappedBy = "driver")
+    @JsonIgnoreProperties("driver")
     private List<Reservation> reservations;
 
 
@@ -78,6 +84,7 @@ public class Driver {
         this.driverMembershipEnd = driverMembershipEnd;
     }
 
+    //@JsonIgnore
     public List<Reservation> getReservations() {
         return reservations;
     }
