@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.model.Driver;
+import com.wip.carrental.model.ParkingLocation;
 import com.wip.carrental.model.Reservation;
 import com.wip.carrental.model.ReservationStatus;
 import com.wip.carrental.model.Vehicle;
@@ -42,7 +44,7 @@ public class ReservationController {
     }
     
     
-    //To be tested
+
     @PostMapping("/reservation")
     public ResponseEntity<?> postReservation(@RequestBody Reservation reservation, @RequestParam(value = "driverEmailId", required = false) String driverEmailId, 
     											@RequestParam(value = "vehicle_id", required = false) Long vehicle_id) {
@@ -61,29 +63,29 @@ public class ReservationController {
     		throw new ResourceNotFoundException("Vehicle with ID " + vehicle_id + " not found");
     	}
     	
-    	//Driver and Vehicle both exist--check if teh driver has any existing reservations
+    	//Driver and Vehicle both exist--check if the driver has any existing reservations
     	List<Reservation> reservations = driver.getReservations();
+    	System.out.println("Reservations size before booking " + reservations.size());
     	
     	for (Reservation r : reservations) {
     	    if(r.getStatus() == ReservationStatus.CURRENT || r.getStatus() == ReservationStatus.UPCOMING) {
-    	    	
-    	    	//Krutika NEED TO CHANGE RETURN TYPE
     	    	System.out.println("The user already has a reservation. Please rebook after first reservation is completed.");
-    	    	return ResponseEntity.ok(reservationRepository.save(reservation));
+    	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You already have an existing Reservation. Please retry after it ends");
     	    }
     	}
     	
     	if(vehicle.getStatus() != VehicleStatus.AVAILABLE) {
     		
-    		//Krutika NEED TO CHANGE RETURN TYPE 400 maybe
     		System.out.println("The vehicle is already booked. Please rebook with another vehicle.");
-    		return ResponseEntity.ok(reservationRepository.save(reservation));
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("We're sorry, this vehicle is booked. Please retry booking with another one.");
     	}
     		
     	
     	//If everything is green, go ahead and save reservation
     	reservation.setDriver(driver);
     	reservation.setVehicle(vehicle);
+    	reservation.setPrice();
+    	vehicle.setStatus(VehicleStatus.BOOKED);
     	reservation.setStatus(ReservationStatus.UPCOMING);
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
@@ -116,9 +118,15 @@ public class ReservationController {
     	
     	if(r.isPresent()) {
     		Reservation reservation = r.get();
-    		reservation.setStatus(ReservationStatus.CURRENT);
-    		System.out.println("Driver successfully picked up vehicle on reservation" + reservation.getReservationId());
-    		return ResponseEntity.ok(reservationRepository.save(reservation));
+    		if(reservation.getStatus() == ReservationStatus.UPCOMING) {
+				reservation.setStatus(ReservationStatus.CURRENT);
+				ParkingLocation location = reservation.getVehicle().getParkingLocation();
+				location.setFilledSpots(location.getFilledSpots() - 1);
+				System.out.println("Driver successfully picked up vehicle on reservation" + reservation.getReservationId());
+				return ResponseEntity.ok(reservationRepository.save(reservation));
+    		} else {
+    			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Trying update reservation with status " + reservation.getStatus());
+    		}
     	} else {
     		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
     	}
@@ -132,11 +140,25 @@ public class ReservationController {
     	
     	if(r.isPresent()) {
     		Reservation reservation = r.get();
-    		reservation.setStatus(ReservationStatus.ENDED);
-    		
-    		
-    		System.out.println("Driver successfully picked up vehicle on reservation" + reservation.getReservationId());
-    		return ResponseEntity.ok(reservationRepository.save(reservation));
+    		if(reservation.getStatus() == ReservationStatus.CURRENT) {
+
+    			//Check if vehicle can be dropped at a location
+    			Vehicle vehicle = reservation.getVehicle();
+    			ParkingLocation location = vehicle.getParkingLocation();
+    			if(location.getFilledSpots() < location.getCapacity()) {
+    				location.setFilledSpots(location.getFilledSpots() + 1);
+    				vehicle.setStatus(VehicleStatus.AVAILABLE);
+    				System.out.println("Driver successfully dropped off vehicle at location " + reservation.getVehicle().getParkingLocation().getLocationId());
+    				reservation.setStatus(ReservationStatus.ENDED);
+    				return ResponseEntity.ok(reservationRepository.save(reservation));
+    				
+    			} else {
+    				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot drop vehicle at an already full location");
+    			}
+    		} else {
+    			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("YOu are trying to update an incorrect reservation");
+    		}
+
     	} else {
     		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
     	}

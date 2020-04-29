@@ -17,6 +17,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "reservation")
@@ -27,15 +29,17 @@ public class Reservation{
 	private long reservationId;
 	
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "driverEmailId", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnoreProperties("reservations")
 	private Driver driver; 
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name="vehicle_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
+	@JsonIgnoreProperties("reservation")
 	private Vehicle vehicle;
 	
 	@Column
@@ -50,7 +54,7 @@ public class Reservation{
 	@Column
 	@NonNull
 	private boolean picked;
-	
+
 	@Column
 	@NonNull
 	private double price;
@@ -69,7 +73,7 @@ public class Reservation{
 		this.reservationId = reservationId;
 	}
 
-	
+	//@JsonIgnore
 	public Driver getDriver() {
 		return driver;
 	}
@@ -78,7 +82,7 @@ public class Reservation{
 		this.driver = driver;
 	}
 
-	
+	//@JsonIgnore
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -116,7 +120,7 @@ public class Reservation{
 		return price;
 	}
 
-	//Varying price wrt hours booked
+	//Krutika This needs to be debugged
 	public void setPrice() {
 		double basePrice = this.getVehicle().getVehicleBasePrice();
 		int hours = this.getHours();
