@@ -32,10 +32,10 @@ export default function Viewdetails() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           Car Name  
+           car name
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Car Description <br></br>
+            car_description<br></br>
             Car Cost $15 per hour <br></br>
             Other Details <br></br>
             Other Details <br></br>

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Details() {
+export default function Details(props) {
   const classes = useStyles();
 
   return (
@@ -31,10 +31,10 @@ export default function Details() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           Car Name
+           {props.car_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Car Description
+            Car Description :{props.car_description}
           </Typography>
         </CardContent>
       </CardActionArea>
