@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,12 +16,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-//@Import(BeanValidatorPluginsConfiguration.class)
 public class CarRentalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalApplication.class, args);
 	}
+
 	@Bean
 	public Docket apiDocket() {
 		String groupName = "Swagger";
@@ -37,20 +37,11 @@ public class CarRentalApplication {
 	// Describe the apis
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("test")
-				.description("Test")
+				.title("Car Hire")
+				.description("All Apis and models")
 				.version("1.0.0")
-				.license("vvv")
+				.license("TEAM WIP")
 				.build();
 	}
 
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurerAdapter() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/api/*").allowedOrigins("http://localhost:3000");
-//			}
-//		};
-//	}
 }
