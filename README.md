@@ -44,7 +44,7 @@ We developed a Spring MVC based  web application to create a eco system where th
 
 
  # UML DIAGRAM
-![](model.png)
+![](202model.png)
 
 # Backend Services
 We will be using SRPING MVC Java APIs to fetch the values from the Models. Since our application will render information on run-time, the non-blocking asynchronous nature of JAVA will help us get good performance.
