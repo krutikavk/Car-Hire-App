@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.model.Reservation;
 import com.wip.carrental.repository.ReservationRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import com.wip.carrental.repository.VehicleRepository;
 
 @RestController
 @RequestMapping("/api")
+@Api(value = "Vehicle Management System")
 //@CrossOrigin(origins = "http://localhost:8080")
 public class VehicleController {
 

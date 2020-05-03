@@ -3,6 +3,7 @@ package com.wip.carrental.controller;
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.model.ParkingLocation;
 import com.wip.carrental.repository.ParkingLocationRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
+@Api(value = "Parking Management System")
 public class ParkingLocationController {
     @Autowired
     private ParkingLocationRepository parkingLocationRepository;

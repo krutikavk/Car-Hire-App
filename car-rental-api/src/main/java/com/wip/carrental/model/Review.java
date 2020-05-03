@@ -10,9 +10,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "review")
+
+@ApiModel(description = "All details about the reviews ")
 public class Review {
 	
 	@Id

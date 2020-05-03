@@ -95,6 +95,7 @@ export default class Landingpage extends Component {
    
     axios.get('http://localhost:8080/vehicles')
             .then((response) => {
+              
               console.log(response.data);
               this.setState({
                cars : this.state.cars.concat(response.data) 

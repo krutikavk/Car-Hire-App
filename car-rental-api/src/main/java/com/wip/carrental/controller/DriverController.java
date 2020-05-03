@@ -6,6 +6,7 @@ import com.wip.carrental.repository.ReservationRepository;
 import com.wip.carrental.model.Driver;
 import com.wip.carrental.model.Reservation;
 
+import io.swagger.annotations.Api;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
+@Api(value = "Driver Management System")
 public class DriverController {
     @Autowired
     private DriverRepository driverRepository;

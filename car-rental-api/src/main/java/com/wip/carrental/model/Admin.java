@@ -5,9 +5,13 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "admins")
+
+@ApiModel(description = "Admin Table")
 public class Admin {
     
 

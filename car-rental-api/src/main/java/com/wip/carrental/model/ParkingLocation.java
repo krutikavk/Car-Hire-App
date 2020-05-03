@@ -5,8 +5,13 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "parking_locations")
+
+@ApiModel(description = "All details about the  locations ")
 public class ParkingLocation {
 
 

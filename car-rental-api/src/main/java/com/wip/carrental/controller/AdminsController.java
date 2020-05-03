@@ -6,6 +6,7 @@ import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
 import com.wip.carrental.model.Admin;
 
 
+import io.swagger.annotations.Api;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
+@Api(value = "Admin Management System")
 public class AdminsController {
 
     @Autowired

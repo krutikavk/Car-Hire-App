@@ -6,6 +6,7 @@ import com.wip.carrental.model.Driver;
 import com.wip.carrental.repository.DriverCardRepository;
 import com.wip.carrental.repository.DriverRepository;
 import com.wip.carrental.model.DriverCard;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
+@Api(value = "Drivercard Management System")
 public class DriverCardController {
     @Autowired
     private DriverCardRepository driverCardRepository;
