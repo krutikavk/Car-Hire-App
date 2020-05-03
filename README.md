@@ -1,3 +1,5 @@
+ #  CAR HIRE
+ 
  sp20-cmpe-202-sec-03-team-project-wip
  sp20-cmpe-202-sec-03-team-project-wip created by GitHub Classroom
  
@@ -8,15 +10,26 @@ https://docs.google.com/spreadsheets/d/1bwUoeZ0_PFh3q6xMzNdLJCtQJ6lX0SsjbzNv-Mio
 #Design Doc
 https://docs.google.com/document/d/1DM46SGXyhCMIH70hC72ufU-x_5uT-EtUg1gDs10Lwmk/edit
 
-#  GoCar
+
+
+# Cloud Architecute
+
+![](CMPE202_CLOUD.png)
+
+
+
 
 
 
 # Team
-1.Krutika
-2.Sathya Sri
-3.Sai Chaitanya Dasari
-4.Yeswanth
+
+1.Sai Chaitanya Dasari
+
+2.Krutika
+
+3.Sathya Sri
+
+4.Yeswant
 
 
 # Tech Stack:
