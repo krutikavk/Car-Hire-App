@@ -1,4 +1,3 @@
-
 import React ,{Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,8 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
 import SearchIcon from '@material-ui/icons/Search';
-import Details from './detailspage';
-import Navbar from './Navigationbar'
+import Details from '../../detailspage';
+import Navbar from './navbar';
 
 
 export default class Landingpage extends Component {
@@ -40,7 +39,7 @@ render(){
          car_id={product.vehicleId}/>   
     )
 })
-//product_id={product._id}
+
   return (
     <div >
       <Navbar/>

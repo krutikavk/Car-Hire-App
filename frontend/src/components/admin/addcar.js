@@ -13,30 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
-// constructor(props){
-//   super(props);
-//     this.state={
-//       CardName:"",
-//       CardNo:"",
-//       date: new Date()
-     
-//     }  
-//     this.handleChange = this.handleChange.bind(this); 
-//     this.onChange=this.onChange.bind(this);
-// }
+import Navbar from './navbar'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,18 +35,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-//const classes = useStyles();
-export default class SignUp extends Component  {
+
+export default class Addcar extends Component  {
   constructor(props) {
     super(props);
     this.state = {
-      firstName:"",
-      address:"",
-      lno:"",
-      email:"",
-      password:"",
-      stateName:""
-
+      
 
     };
     this.handleChange = this.handleChange.bind(this); 
@@ -80,41 +52,37 @@ export default class SignUp extends Component  {
     });}
     handleClick(e){
       e.preventDefault();
-      const data={driverLicense:this.state.lno,driverAddress:this.state.address,driverName:this.state.firstName,driverEmailId:this.state.email,
-        driverPassword:this.state.password,driverState:this.state.stateName}
+      const data={}
         console.log("sending data"+ data)
         console.log(data)
-        axios.post('http://localhost:8080/api/drivers',data)
-            .then(response => {  
-              console.log(response)  
-                if(response.status === 200){
-                    window.open('/lp', "_self");
-                       }  
-                       else
-                       alert("Something went wrong");
-                      } )}
+        // axios.post('http://localhost:8080/api/drivers',data)
+        //     .then(response => {  
+        //       console.log(response)  
+        //         if(response.status === 200){
+        //             window.open('/lp', "_self");
+        //                }  
+        //                else
+        //                alert("Something went wrong");
+        //               } )
+                    }
 render(){
   
   return (
+      <div>
+      <Navbar/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+     
       <div className={useStyles.paper}>
-        <Avatar style={{
-            
-           
-            marginLeft: "170px",
-            
-          }} className={useStyles.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        
         <br/>
         <Typography style={{
             
            
-            marginLeft: "150px",
+            marginLeft: "100px",
             
           }} component="h1" variant="h5">
-          Sign up
+          Admin - Add Car
         </Typography>
         <br/>
         <form className={useStyles.form} noValidate>
@@ -122,13 +90,13 @@ render(){
             <Grid item xs={12} >
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="carid"
                 onChange={this.handleChange}
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="Name"
+                id="carid"
+                label="Car Id"
                 autoFocus
               />
             </Grid>
@@ -194,13 +162,9 @@ render(){
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
+            
           </Grid>
+          <br/>
           <Button
             type="submit"
             fullWidth
@@ -209,20 +173,15 @@ render(){
             className={useStyles.submit}
             onClick={this.handleClick}
           >
-            Sign Up
+           Add Car
           </Button>
          
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/signin" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
+          
         </form>
       </div>
       
     </Container>
+    </div>
   );
 }
 }

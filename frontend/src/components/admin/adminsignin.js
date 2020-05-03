@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default class Signin extends Component {
+export default class AdminSignin extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -54,10 +53,10 @@ export default class Signin extends Component {
   }
   handleClick(e){
     e.preventDefault();
-    const data={driverEmailId:this.state.email,driverPassword:this.state.password}
-    axios.post('http://localhost:8080/api/drivers/login',data).then(response => {  
+    const data={adminEmailId:this.state.email,adminPassword:this.state.password}
+    axios.post('http://localhost:8080/api/admins/login',data).then(response => {  
         if(response.status === 200){
-            window.open('/lp', "_self");
+            window.open('/adminLanding', "_self");
                }  
                else
                alert("Something went wrong");
@@ -72,10 +71,9 @@ render(){
         <Avatar className={useStyles.avatar} style={{marginLeft: "150px", }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" style={{marginLeft: "140px", }} variant="h5">
-          Sign in
+        <Typography style={{marginLeft: "120px", }} component="h1" variant="h5">
+         Admin Sign in
         </Typography>
-        <br/>
         <form className={useStyles.form} noValidate>
           <TextField
             variant="outlined"
@@ -115,18 +113,16 @@ render(){
           >
             Sign In
           </Button>
+          <br/>
           <Grid container>
             <Grid item xs>
-              <Link href="/adminsignin" variant="body2">
-                Sign in as Admin
+              <Link href="/signin" variant="body2">
+                Sign In as User
               </Link>
             </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
+           
           </Grid>
+          
         </form>
       </div>
       

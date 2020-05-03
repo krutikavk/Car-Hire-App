@@ -17,6 +17,11 @@ const useStyles = makeStyles({
 
 export default function Details(props) {
   const classes = useStyles();
+  function handleClick(e) {
+    e.preventDefault(); 
+    localStorage.setItem("selectedcar", props.car_id);
+   window.open('/dp', "_self");
+  }
 
   return (
       <div className="fixed-bottom">
@@ -39,7 +44,7 @@ export default function Details(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleClick}>
          View More Details
         </Button>
         
