@@ -1,5 +1,6 @@
 package com.wip.carrental.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,6 +123,8 @@ public class ReservationController {
 				reservation.setStatus(ReservationStatus.CURRENT);
 				ParkingLocation location = reservation.getVehicle().getParkingLocation();
 				location.setFilledSpots(location.getFilledSpots() - 1);
+				Date d = new Date();
+				reservation.setPickup(d);
 				System.out.println("Driver successfully picked up vehicle on reservation" + reservation.getReservationId());
 				return ResponseEntity.ok(reservationRepository.save(reservation));
     		} else {
