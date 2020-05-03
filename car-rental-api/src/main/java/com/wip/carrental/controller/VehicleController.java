@@ -124,11 +124,16 @@ public class VehicleController {
 			return ResponseEntity.ok(vehicleRepository.save(vehicle));
 		}).orElseThrow(() -> new ResourceNotFoundException("Vehicle ID " + vehicleId + " not found"));
 	}
-
+	
+	
 	@DeleteMapping("vehicles/{vehicleId}")
 	public ResponseEntity<?> deleteVehicle(@PathVariable Long vehicleId) {
 		if (vehicleRepository.existsById(vehicleId)) {
+			Vehicle vehicle = vehicleRepository.findById(vehicleId).orElse(null);
+			ParkingLocation parkingLocation = vehicle.getParkingLocation();
+			parkingLocation.setFilledSpots(parkingLocation.getFilledSpots() - 1);
 			vehicleRepository.deleteById(vehicleId);
+			
 			return ResponseEntity.ok("Vehicle with " + vehicleId + " deleted");
 		}
 		throw new ResourceNotFoundException("Vehicle with " + vehicleId + " not found");
