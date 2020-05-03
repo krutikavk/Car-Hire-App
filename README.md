@@ -12,15 +12,6 @@ https://docs.google.com/document/d/1DM46SGXyhCMIH70hC72ufU-x_5uT-EtUg1gDs10Lwmk/
 
 
 
-# Cloud Architecture
-
-![](CMPE202_Cloud.png)
-
-
-
-
-
-
 # Team
 
 1.Sai Chaitanya Dasari
@@ -42,19 +33,18 @@ Cloud : AWS
 We developed a Spring MVC based  web application to create a eco system where the users can book a car for a short trip/Weekend trip by registering into our application. We leveraged the java design patterns and cloud architeture to achieve a highly scalable and high latency.
 
 
-
-
-
-
 # Cloud Architecture
-The application wii be designed using cloud native technologies, specifically AWS. The frontend will be served as a static website
 
-![](CarRental_Architecture.png)
-
+![](CMPE202_Cloud.png)
 
 
 
- 
+
+
+
+
+ # UML DIAGRAM
+![](model.png)
 
 # Backend Services
 We will be using SRPING MVC Java APIs to fetch the values from the Models. Since our application will render information on run-time, the non-blocking asynchronous nature of JAVA will help us get good performance.
