@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.wip.carrental.model.ParkingLocation;
+import com.wip.carrental.model.Reservation;
 import com.wip.carrental.model.Vehicle;
 import com.wip.carrental.repository.ParkingLocationRepository;
+import com.wip.carrental.repository.ReservationRepository;
 import com.wip.carrental.repository.VehicleRepository;
 
 
@@ -25,6 +27,9 @@ public class VehicleController {
 	
 	@Autowired
 	private ParkingLocationRepository parkingLocationRepository;
+	
+	@Autowired
+	private ReservationRepository reservationRepository;
 
 	@GetMapping("/vehicles")
 	public List<Vehicle> getAllVehicles() {
@@ -35,6 +40,26 @@ public class VehicleController {
 	public Optional<Vehicle> getAllVehicles(@PathVariable Long vehicleId) {
 		return vehicleRepository.findById(vehicleId);
 	}
+	
+	
+	//Get average reviews for vehicle
+    @GetMapping("/vehicles/{vehicleId}/reviews") 
+    public float getAverageRatingForVehicle(@PathVariable Long vehicleId) {
+    	Iterable<Reservation> reservation = reservationRepository.findAll();
+    	float totalRating = 0;
+    	int countRating = 0;
+    	while(reservation.iterator().hasNext()) {
+    		Reservation r = reservation.iterator().next();
+    		if(r.getVehicle().getVehicleId() == vehicleId) {
+    			totalRating += r.getReview().getRating();
+    			countRating++;
+    		}
+    	}
+    	
+    	return totalRating/countRating;
+    }
+    
+	
 
 	//Need to track parking location capacity here when adding a vehicle
 	@PostMapping("/vehicles")
