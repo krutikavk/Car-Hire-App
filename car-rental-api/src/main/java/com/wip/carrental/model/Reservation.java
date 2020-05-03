@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
@@ -16,12 +17,16 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.lang.NonNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "reservation")
+
+@ApiModel(description = "All details about the reservations ")
 public class Reservation{
 	
 	@Id
@@ -63,6 +68,9 @@ public class Reservation{
 	@NonNull
 	private ReservationStatus status;
 	
+	@OneToOne
+	@JoinColumn(name = "commitId")
+	private Review review;
 	
 
 	public long getReservationId() {
@@ -120,17 +128,22 @@ public class Reservation{
 		return price;
 	}
 
-	//Krutika This needs to be debugged
+	//Krutika --1$ price discount for every 8 hours extra booked
 	public void setPrice() {
+		double discount = 1;
+		//1$ discount for every 8 hours booked
 		double basePrice = this.getVehicle().getVehicleBasePrice();
 		int hours = this.getHours();
+		this.price = 0;
+		int j = 0;
 		
-		this.price = 0; 
-		
-		//BasePrice will be price per hour, reduced by 1 for every 8 hours booked
-		for( int i = 1; i <= hours; i += 8) {
-			this.price += basePrice * 8;
-			basePrice -= 1;
+		for( int i = 0; i <= hours; i++) {
+			while(j <= i + 8 && j <= hours) {
+				this.price += basePrice + discount;
+				j++;
+			}
+			discount--;
+			i = j - 1;
 		}
 		
 	}
@@ -141,6 +154,14 @@ public class Reservation{
 
 	public void setStatus(ReservationStatus status) {
 		this.status = status;
+	}
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
 	}
 	
 	

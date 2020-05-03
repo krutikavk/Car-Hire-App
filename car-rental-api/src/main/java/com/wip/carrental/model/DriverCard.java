@@ -6,6 +6,9 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.lang.NonNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -13,6 +16,8 @@ import javax.persistence.*;
 
 @Entity
 @Table
+
+@ApiModel(description = "This is DriverCard Table")
 public class DriverCard {
 
 	@Id
