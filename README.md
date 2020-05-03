@@ -14,7 +14,7 @@ https://docs.google.com/document/d/1DM46SGXyhCMIH70hC72ufU-x_5uT-EtUg1gDs10Lwmk/
 
 # Cloud Architecute
 
-![](CMPE202_CLOUD.png)
+![](CMPE202_Cloud.png)
 
 
 
