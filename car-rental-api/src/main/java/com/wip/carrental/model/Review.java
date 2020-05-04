@@ -21,7 +21,7 @@ public class Review {
 	
 	@Id
 	@GeneratedValue
-	private Integer commitId;
+	private Integer reviewId;
 	
 	@OneToOne(mappedBy="review")
 	private Reservation reservation;
@@ -34,12 +34,12 @@ public class Review {
 	@Max(value = 5)
 	private int rating = 5;
 
-	public Integer getCommitId() {
-		return commitId;
+	public Integer getReviewId() {
+		return reviewId;
 	}
 
-	public void setCommitId(Integer commitId) {
-		this.commitId = commitId;
+	public void setReviewId(Integer reviewId) {
+		this.reviewId = reviewId;
 	}
 
 	public Reservation getReservation() {

@@ -66,7 +66,7 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private ReservationStatus status;
+	private ReservationStatus status = ReservationStatus.UPCOMING;
 	
 	@OneToOne
 	@JoinColumn(name = "commitId")
