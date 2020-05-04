@@ -51,9 +51,6 @@ public class Vehicle {
     @Column(nullable = false)
     @NonNull
     private double vehicleBasePrice;
-    
-    @Column
-    private String vehicleReview;
    
 //    @Column(nullable = false)
 //    private  
@@ -62,8 +59,6 @@ public class Vehicle {
 //    private 	
 //    AWSCredentials credentials = new BasicAWSCredentials( "AKIAIVPPCCHO*******",  "1WprFFGrAz3vd6Qb6xixTrD+jb*******");
 	
-	@Column(nullable = false)
-	private TimeZone time;
 	
 	@Column
 	private String description;
@@ -73,7 +68,6 @@ public class Vehicle {
 	 @JsonIgnoreProperties("vehicle")
     private List<Reservation> reservation;
 	
-
 
 	public long getVehicleId() {
 		return vehicleId;
@@ -132,22 +126,6 @@ public class Vehicle {
 
 	public void setVehicleBasePrice(double vehicleBasePrice) {
 		this.vehicleBasePrice = vehicleBasePrice;
-	}
-
-	public String getVehicleReview() {
-		return vehicleReview;
-	}
-
-	public void setVehicleReview(String vehicleReview) {
-		this.vehicleReview = vehicleReview;
-	}
-
-	public TimeZone getTime() {
-		return time;
-	}
-
-	public void setTime(TimeZone time) {
-		this.time = time;
 	}
 
 	public String getDescription() {
