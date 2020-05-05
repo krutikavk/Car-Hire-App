@@ -1,5 +1,6 @@
 package com.wip.carrental.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -143,9 +144,11 @@ public class ReservationController {
     }
     
     //API to change status of reservation when driver drops back a vehicle
+    //Calculate and add late fee to price of reservation when a vehicle is returned late 
     @PutMapping("/reservation/{reservationId}/end")
     public ResponseEntity<?> endReservation(@PathVariable Long reservationId) {
     	Optional<Reservation> r = reservationRepository.findById(reservationId);
+    	boolean latefee = false;
     	
     	if(r.isPresent()) {
     		Reservation reservation = r.get();
@@ -157,7 +160,30 @@ public class ReservationController {
     			if(location.getFilledSpots() < location.getCapacity()) {
     				location.setFilledSpots(location.getFilledSpots() + 1);
     				vehicle.setStatus(VehicleStatus.AVAILABLE);
+    				
+    				//Check if vehicles was returned on time
+    				Calendar returnCal = Calendar.getInstance();
+    		        Date returnTime = returnCal.getTime();
+    		        
+    		        //Add booked number of hours to originally booked pickup date
+    		        Calendar pickupCal = Calendar.getInstance();
+    		        pickupCal.setTime(reservation.getPickup());
+    		        pickupCal.add(Calendar.HOUR_OF_DAY, reservation.getHours());
+    		        Date pickupTime = pickupCal.getTime();
+    		        
+    		        System.out.println("DATE COMPARE OUTPUT " + returnTime.compareTo(pickupTime));
+
+    		        if(returnTime.compareTo(pickupTime) <= 0) {
+    		        	//return occurs after designated pickup time
+    		        	System.out.println("CAME IN HERE");
+    		        	reservation.addLateFeee();
+    		        	latefee = true;
+    		        }
+    		        
     				System.out.println("Driver successfully dropped off vehicle at location " + reservation.getVehicle().getParkingLocation().getLocationId());
+    				if(latefee) 
+    					System.out.println("Late fee: 100$ Balance pay: 100$");
+    				
     				reservation.setStatus(ReservationStatus.ENDED);
     				return ResponseEntity.ok(reservationRepository.save(reservation));
     				

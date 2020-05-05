@@ -148,6 +148,11 @@ public class Reservation{
 		}
 		
 	}
+	
+	//enforce late fee of 100$ if car is returned late
+	public void addLateFeee() {
+		this.price += 100;
+	}
 
 	public ReservationStatus getStatus() {
 		return status;
