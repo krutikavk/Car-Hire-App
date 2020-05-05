@@ -88,8 +88,7 @@ public class DriverController {
     public ResponseEntity<?> changeMemberShipFee(@PathVariable String driverEmailId, @RequestParam(value = "memberShipFee") Double newFee) {
         Driver driver = driverRepository.findById(driverEmailId).orElse(null);
         if (driver != null) {
-        	
-        	
+        	driver.setMemberShipFee(newFee);
         	return ResponseEntity.ok(driverRepository.save(driver));
         } else {
         	return ResponseEntity.notFound().eTag("driver not found").build();
