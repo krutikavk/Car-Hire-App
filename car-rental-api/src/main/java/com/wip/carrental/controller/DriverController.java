@@ -72,6 +72,7 @@ public class DriverController {
         return (BCrypt.checkpw(plainPassword, hashedPassword));
     }
 
+    
     @PutMapping("/drivers/{driverEmailId}")
     public ResponseEntity<?> updateDriver(@PathVariable String driverEmailId, @RequestBody Driver driverRequestBody) {
         return driverRepository.findById(driverEmailId).map(driver -> {
@@ -82,20 +83,30 @@ public class DriverController {
         }).orElseThrow(() -> new ResourceNotFoundException("Email ID " + driverEmailId + " not found"));
     }
     
-    
+    //Update Membership fee
     @PutMapping("/drivers/{driverEmailId}/updateFee")
     public ResponseEntity<?> changeMemberShipFee(@PathVariable String driverEmailId, @RequestParam(value = "memberShipFee") Double newFee) {
         Driver driver = driverRepository.findById(driverEmailId).orElse(null);
         if (driver != null) {
-        	driver.setMemberShipFee(newFee);
+        	
+        	
         	return ResponseEntity.ok(driverRepository.save(driver));
         } else {
         	return ResponseEntity.notFound().eTag("driver not found").build();
         }
     }
     
-    
-    
+    //End membership for driver
+    @PutMapping("/drivers/{driverEmailId}/endMembership" )
+    public ResponseEntity<?> endMemberShip(@PathVariable String driverEmailId) {
+    	 Driver driver = driverRepository.findById(driverEmailId).orElse(null);
+         if (driver != null) {
+         	driver.setMember(false);
+         	return ResponseEntity.ok(driverRepository.save(driver));
+         } else {
+         	return ResponseEntity.notFound().eTag("driver not found").build();
+         }
+    }
 
     @DeleteMapping("/drivers/{driverEmailId}")
     public ResponseEntity<?> deleteDriver(@PathVariable String driverEmailId) {

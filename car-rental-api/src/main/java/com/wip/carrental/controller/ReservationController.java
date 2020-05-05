@@ -103,10 +103,14 @@ public class ReservationController {
     	
     	if(r.isPresent()) {
     		Reservation reservation = r.get();
-    		Vehicle vehicle = reservation.getVehicle();
-    		vehicle.setStatus(VehicleStatus.AVAILABLE);
-    		reservation.setStatus(ReservationStatus.CANCELLED);
-    		return ResponseEntity.ok(reservationRepository.save(reservation));
+    		if(reservation.getStatus() == ReservationStatus.UPCOMING) {
+	    		Vehicle vehicle = reservation.getVehicle();
+	    		vehicle.setStatus(VehicleStatus.AVAILABLE);
+	    		reservation.setStatus(ReservationStatus.CANCELLED);
+	    		return ResponseEntity.ok(reservationRepository.save(reservation));
+    		} else {
+    			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Trying to cancel a reservation that has already started/ended " + reservation.getStatus());
+    		}
     	} else {
     		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
     	}
