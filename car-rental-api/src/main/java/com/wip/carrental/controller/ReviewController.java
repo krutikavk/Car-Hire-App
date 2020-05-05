@@ -41,6 +41,7 @@ public class ReviewController {
 		Reservation reservation = reservationRepository.findById(reservationId).orElse(null);
 		if( reservation != null) {
 			review.setReservation(reservation);
+			reservation.setReview(review);
 			return ResponseEntity.ok(reviewRepository.save(review));
 		}
 		else {

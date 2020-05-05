@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -24,6 +26,7 @@ public class Review {
 	private Integer reviewId;
 	
 	@OneToOne(mappedBy="review")
+	@JsonIgnoreProperties("review")
 	private Reservation reservation;
 	
 	@Column

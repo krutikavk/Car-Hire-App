@@ -193,6 +193,9 @@ public class ReservationController {
     	
     	//need to add logic to free reserved vehicle up, car returned, review etc
 		if (reservationRepository.existsById(reservationId)) {
+			Reservation reservation = reservationRepository.findById(reservationId).orElse(null);
+			Vehicle vehicle = reservation.getVehicle();
+			vehicle.setStatus(VehicleStatus.AVAILABLE);
 			reservationRepository.deleteById(reservationId);
 			return ResponseEntity.ok("Reservation with " + reservationId + " deleted");
 		}
@@ -200,5 +203,4 @@ public class ReservationController {
 
 	}    
 	 
-	
 }

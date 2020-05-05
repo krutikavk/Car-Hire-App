@@ -58,7 +58,7 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private boolean picked;
+	private boolean picked = false;
 
 	@Column
 	@NonNull
@@ -69,7 +69,8 @@ public class Reservation{
 	private ReservationStatus status = ReservationStatus.UPCOMING;
 	
 	@OneToOne
-	@JoinColumn(name = "commitId")
+	@JoinColumn(name = "reviewId")
+	@JsonIgnoreProperties("reservation")
 	private Review review;
 	
 

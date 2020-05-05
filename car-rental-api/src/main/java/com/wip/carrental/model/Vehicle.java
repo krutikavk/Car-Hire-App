@@ -41,7 +41,7 @@ public class Vehicle {
     @Column
     @NonNull
     @Enumerated(EnumType.STRING)
-    private VehicleStatus vehicleStatus;
+    private VehicleStatus vehicleStatus = VehicleStatus.AVAILABLE;
     
     @Column
     private String vehicleImageUrl;
