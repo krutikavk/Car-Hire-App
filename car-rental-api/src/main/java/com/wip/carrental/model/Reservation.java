@@ -58,7 +58,7 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private boolean picked;
+	private boolean picked = false;
 
 	@Column
 	@NonNull
@@ -66,10 +66,11 @@ public class Reservation{
 	
 	@Column
 	@NonNull
-	private ReservationStatus status;
+	private ReservationStatus status = ReservationStatus.UPCOMING;
 	
 	@OneToOne
-	@JoinColumn(name = "commitId")
+	@JoinColumn(name = "reviewId")
+	@JsonIgnoreProperties("reservation")
 	private Review review;
 	
 
@@ -146,6 +147,11 @@ public class Reservation{
 			i = j - 1;
 		}
 		
+	}
+	
+	//enforce late fee of 100$ if car is returned late
+	public void addLateFeee() {
+		this.price += 100;
 	}
 
 	public ReservationStatus getStatus() {

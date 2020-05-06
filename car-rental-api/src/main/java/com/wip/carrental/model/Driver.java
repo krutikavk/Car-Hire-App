@@ -48,6 +48,9 @@ public class Driver {
     @Column
     private Double memberShipFee = 50.0;
     
+    @Column
+    private boolean member = true;
+    
     
     @OneToMany(fetch = FetchType.EAGER, cascade =  CascadeType.ALL,
             mappedBy = "driver")
@@ -144,6 +147,14 @@ public class Driver {
 
 	public void setMemberShipFee(Double memberShipFee) {
 		this.memberShipFee = memberShipFee;
+	}
+
+	public boolean isMember() {
+		return member;
+	}
+
+	public void setMember(boolean member) {
+		this.member = member;
 	}
 
 
