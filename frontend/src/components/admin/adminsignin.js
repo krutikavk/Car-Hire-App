@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-
+import Navbar from '../../components/navbar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +64,10 @@ export default class AdminSignin extends Component {
   
   
 render(){
+  
   return (
+    <div> 
+    <Navbar/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={useStyles.paper}>
@@ -114,19 +117,20 @@ render(){
             Sign In
           </Button>
           <br/>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
               <Link href="/signin" variant="body2">
                 Sign In as User
               </Link>
             </Grid>
            
-          </Grid>
+          </Grid> */}
           
         </form>
       </div>
       
     </Container>
+    </div>
   );
 }
 }

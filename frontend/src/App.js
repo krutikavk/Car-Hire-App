@@ -2,6 +2,7 @@ import React from 'react';
 import Landingpage from "./landingpage"
 import Signin from "./signin"
 import Signup from "./signup"
+import Home from './components/Home'
 import Viewdetails from "./viewdetails"
 import Navbar from './components/admin/navbar'
 import Addcar from './components/admin/addcar'
@@ -11,13 +12,16 @@ import AdminLanding from './components/admin/adminLandingPage'
 import Pickup from './PickAndCancel'
 //import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-function App() {
+const App = ()  => {
   return (
     
     
     <Router>
-      
-      <Switch>
+      <div>
+        <Route exact path="/" component={Home}/>
+        </div>
+
+     <div>
         <Route path="/signin" component={Signin}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/lp" component={Landingpage}/>
@@ -31,7 +35,7 @@ function App() {
        
 
         
-    </Switch>
+</div>
       
         
       </Router>

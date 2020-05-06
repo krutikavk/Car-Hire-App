@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-
+import Navbar from './components/navbar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,15 +67,18 @@ export default class Signin extends Component {
   
   
 render(){
+  
   return (
+    <div> 
+    <Navbar/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={useStyles.paper}>
         <Avatar className={useStyles.avatar} style={{marginLeft: "150px", }}>
-          <LockOutlinedIcon />
+          {/* <LockOutlinedIcon /> */}
         </Avatar>
-        <Typography component="h1" style={{marginLeft: "140px", }} variant="h5">
-          Sign in
+        <Typography component="h1" style={{marginLeft: "100px", }} variant="h5">
+      Customer Sign in
         </Typography>
         <br/>
         <form className={useStyles.form} noValidate>
@@ -115,14 +118,14 @@ render(){
             className={useStyles.submit}
             onClick={this.handleClick}
           >
-            Sign In
+              Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="/adminsignin" variant="body2">
                 Sign in as Admin
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
@@ -133,6 +136,7 @@ render(){
       </div>
       
     </Container>
+    </div>
   );
 }
 }
