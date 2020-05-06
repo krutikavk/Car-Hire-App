@@ -76,6 +76,9 @@ function terminateuser (e) {
           height="140"
           src={image}
           title="user image"
+          style ={{display: 'block', marginLeft: 'auto',
+          marginRight: 'auto',
+          width: '70%'}} 
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

@@ -56,19 +56,12 @@ render(){
 
   return (
     <div>
-
       <Navbar/>    
      <div>
-  <Grid container item xs={12} spacing={3}>
-  <Grid item xs={3}>
-  <Paper padding = 'theme.spacing(1)' color='theme.palette.text.secondary'>{details}</Paper>
-  <div></div>
-   </Grid>
-   <div>
-     </div>
-  </Grid>
+     <div style={{display: 'flex', justifyContent: 'space-around',flexWrap: 'wrap', paddingLeft:'10%' ,width:'90%'}}>
+       {details}
   </div>
- 
+  </div>
   </div> 
   );
 }

@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import image from '../images/location.jpg';
+import { findAllByDisplayValue } from '@testing-library/react';
 
 
 const useStyles = makeStyles({
@@ -30,15 +31,18 @@ export default function LocationDetails(props) {
 //   }
 
   return (
-     
-    <Card className={classes.root} justify="center">
+   
+    <Card className={classes.root} justify="center"  style={{padding: '25px'}}>
       <CardActionArea>
       <CardMedia
           component="img"
           alt="map image"
-          height="140"
+          
           src={image}
           title="map image"
+         style ={{display: 'block', marginLeft: 'auto',
+          marginRight: 'auto',
+          width: '50%'}} 
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

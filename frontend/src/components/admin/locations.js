@@ -46,6 +46,7 @@ class Locations extends Component {
 render(){
  
   console.log(this.state.locations)
+  
   let details = this.state.locations.map(product => {
     return(
         <LocationDetails city={product.city} address={product.address} 
@@ -58,13 +59,8 @@ render(){
 
       <Navbar/>    
      <div>
-       <div>
-  <Grid container item xs={12} spacing={2}>
-  <Grid item xs={4}>
-   <Paper padding = 'theme.spacing(1)'  color='theme.palette.text.secondary'>{details}</Paper> 
-  
-        </Grid>
-  </Grid>
+       <div style={{display: 'flex', flexWrap: 'wrap', paddingLeft:'10%' ,width:'90%'}}>
+       {details}
   </div>
  </div>
   </div> 
