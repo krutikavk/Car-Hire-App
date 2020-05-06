@@ -121,11 +121,6 @@ render(){
               Sign In
           </Button>
           <Grid container>
-            {/* <Grid item xs>
-              <Link href="/adminsignin" variant="body2">
-                Sign in as Admin
-              </Link>
-            </Grid> */}
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}

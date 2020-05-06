@@ -72,22 +72,27 @@ const classes = useStyles();
 
   return (
     <div >
-      <AppBar position="static">
+      <AppBar position="static" color="black">
         <Toolbar>
           
-          <Typography className={classes.title} variant="h6" noWrap>
-            Rent a Car
+          <Typography className={classes.title} variant="h6"  noWrap>
+          <a  href="/adminLanding">
+          Rent a Vehicle
+          </a> 
           </Typography>
+         
           <Button className={classes.title} href="/addcar" variant="h6" noWrap>
-            Add Car
+            Add Vehicle
           </Button>
           <Button className={classes.title} href="/removecar" variant="h6" noWrap>
-           Remove Car
+           Remove Vehicle
           </Button>
-          <Button className={classes.title} href="/removecar" variant="h6" noWrap>
+          <Button className={classes.title} href="/locations" variant="h6" noWrap>
           Locations
           </Button>
-
+          <Button className={classes.title} href="/addlocation" variant="h6" noWrap>
+              Add Locations
+          </Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

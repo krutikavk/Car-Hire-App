@@ -67,10 +67,10 @@ public class VehicleController {
 
 
 	//Need to track parking location capacity here when adding a vehicle
-	@PostMapping("/vehicles")
-	public ResponseEntity<?> postVehicle(@RequestBody Vehicle vehicle, @RequestParam(value = "parking_location_id") Long parking_location_id) {
+	@PostMapping("/vehicles/{locationid}")
+	public ResponseEntity<?> postVehicle(@RequestBody Vehicle vehicle, @PathVariable Long locationid) {
 		
-		ParkingLocation parkingLocation = parkingLocationRepository.findById(parking_location_id).orElse(null);
+		ParkingLocation parkingLocation = parkingLocationRepository.findById(locationid).orElse(null);
 		
 		if(parkingLocation != null ) {
 			if(parkingLocation.getCapacity() > parkingLocation.getFilledSpots()) {
@@ -82,18 +82,18 @@ public class VehicleController {
 			}
 			
 		} else {
-			throw new ResourceNotFoundException("Parking Location with ID " + parking_location_id + " not found"); 
+			throw new ResourceNotFoundException("Parking Location with ID " + locationid + " not found");
 		}
 		
 	}
 
     @PostMapping("/vehicles/search")
-    public ResponseEntity<?> SearchVehiclesByLocation(@RequestParam(value = "location") String location) {
+    public ResponseEntity<?> SearchVehiclesByLocation(@RequestBody ParkingLocation location) {
 
         try {
             ArrayList<ParkingLocation> parkingLocations = (ArrayList<ParkingLocation>) parkingLocationRepository.findAll();
 
-            List<ParkingLocation> cityLocations = parkingLocations.stream().filter(s -> s.getCity().equalsIgnoreCase(location)).collect(Collectors.toList());
+            List<ParkingLocation> cityLocations = parkingLocations.stream().filter(s -> s.getCity().equalsIgnoreCase(location.getCity())).collect(Collectors.toList());
 
             ArrayList<Vehicle> result = new ArrayList<>();
 

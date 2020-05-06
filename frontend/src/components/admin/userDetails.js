@@ -7,44 +7,54 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import image from './car.jpg';
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-});
+import image from '../images/user.png';
 
-export default function Details(props) {
+
+const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
+  
+export default function UserDetails(props) {
   const classes = useStyles();
-  function handleClick(e) {
-    e.preventDefault(); 
-    localStorage.setItem("selectedcar", props.car_id);
-   window.open('/dp', "_self");
-  }
+
+// handleClick = e => {
+
+//     e.preventDefault(); 
+//     // localStorage.setItem("selectedcar", props._id);
+// //    window.open('/dp', "_self");
+//   }
 
   return (
       <div className="fixed-bottom">
     <Card className={classes.root} justify="center">
       <CardActionArea>
-        <CardMedia
+      <CardMedia
           component="img"
-          alt="car image"
+          alt="user image"
           height="140"
           src={image}
-          title="car image"
+          title="user image"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           {props.car_name}
+           {props.user_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Car Description :{props.car_description}
+            User Address :{props.user_address}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            User email :{props.user_email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={handleClick}>
-         View More Details
+        <Button size="small" color="primary" onClick>
+          Terminate User Membership 
         </Button>
         
       </CardActions>

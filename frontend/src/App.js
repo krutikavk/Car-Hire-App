@@ -9,6 +9,8 @@ import Addcar from './components/admin/addcar'
 import Removecar from './components/admin/removecar'
 import AdminSignin from './components/admin/adminsignin'
 import AdminLanding from './components/admin/adminLandingPage'
+import Location from './components/admin/locations'
+import AddLocation from './components/admin/addLocation'
 import Pickup from './PickAndCancel'
 //import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -27,6 +29,10 @@ const App = ()  => {
         <Route path="/lp" component={Landingpage}/>
         <Route path="/dp" component={Viewdetails}/>
         <Route path="/nbar" component={Navbar}/>
+
+
+        <Route path="/locations" component={Location}/>
+        <Route path="/addlocation" component={AddLocation}/>
         <Route path="/addcar" component={Addcar}/>
         <Route path="/removecar" component={Removecar}/>
         <Route path="/adminsignin" component={AdminSignin}/>
