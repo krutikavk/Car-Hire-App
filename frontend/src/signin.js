@@ -57,11 +57,13 @@ export default class Signin extends Component {
     const data={driverEmailId:this.state.email,driverPassword:this.state.password}
     axios.post('http://localhost:8080/api/drivers/login',data).then(response => {  
         if(response.status === 200){
+          localStorage.setItem("email",this.state.email)
             window.open('/lp', "_self");
                }  
                else
                alert("Something went wrong");
-              })    }
+              })  
+              }
   
   
 render(){

@@ -20,10 +20,10 @@ export default class Landingpage extends Component {
     this.state={cars:[]}
   }
   componentDidMount(){
-   
+   console.log("inside did mount")
+  // console.log("http://localhost:8080/api/vehicles")
     axios.get('http://localhost:8080/api/vehicles')
-            .then((response) => {
-              
+            .then((response) => {              
               console.log(response.data);
               this.setState({
                cars : this.state.cars.concat(response.data) 

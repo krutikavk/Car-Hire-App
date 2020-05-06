@@ -24,7 +24,7 @@ import com.wip.carrental.repository.VehicleRepository;
 @RestController
 @RequestMapping("/api")
 @Api(value = "Vehicle Management System")
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VehicleController {
 
 	@Autowired

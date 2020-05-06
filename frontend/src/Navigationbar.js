@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
+import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search';
 import Details from './detailspage';
 
@@ -84,6 +84,9 @@ const classes = useStyles();
           <Typography className={classes.title} variant="h6" noWrap>
             Rent a Car
           </Typography>
+          <Button  href="/removecar" variant="h6" noWrap>
+         Profile
+          </Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

@@ -156,7 +156,7 @@ render(){
                 fullWidth
                 name="password"
                 onChange={this.handleChange}
-                label="Password"
+                label="something"
                 type="password"
                 id="password"
                 autoComplete="current-password"

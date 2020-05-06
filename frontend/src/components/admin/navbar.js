@@ -84,6 +84,9 @@ const classes = useStyles();
           <Button className={classes.title} href="/removecar" variant="h6" noWrap>
            Remove Car
           </Button>
+          <Button className={classes.title} href="/removecar" variant="h6" noWrap>
+          Locations
+          </Button>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -88,6 +88,7 @@ export default class SignUp extends Component  {
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){
+                  localStorage.setItem("email",this.state.email)
                     window.open('/lp', "_self");
                        }  
                        else
