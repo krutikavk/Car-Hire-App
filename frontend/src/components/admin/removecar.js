@@ -3,12 +3,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -40,8 +36,7 @@ export default class Removecar extends Component  {
   constructor(props) {
     super(props);
     this.state = {
-      
-
+      vehicleId:''
     };
     this.handleChange = this.handleChange.bind(this); 
     this.handleClick = this.handleClick.bind(this); 
@@ -52,18 +47,16 @@ export default class Removecar extends Component  {
     });}
     handleClick(e){
       e.preventDefault();
-      const data={driverLicense:this.state.lno,driverAddress:this.state.address,driverName:this.state.firstName,driverEmailId:this.state.email,
-        driverPassword:this.state.password,driverState:this.state.stateName}
-        console.log("sending data"+ data)
-        console.log(data)
-        axios.post('http://localhost:8080/api/drivers',data)
+        
+        console.log(this.state.vehicleId)
+        axios.delete('http://localhost:8080/api/vehicles/' + this.state.vehicleId)
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){
-                    window.open('/lp', "_self");
+                    window.open('/adminLanding', "_self");
                        }  
                        else
-                       alert("Something went wrong");
+                       window.alert("Something went wrong");
                       } )}
 render(){
   
@@ -82,20 +75,20 @@ render(){
             marginLeft: "90px",
             
           }} component="h1" variant="h5">
-          Admin - Remove Car
+          Remove Car
         </Typography>
         <br/>
         <form className={useStyles.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} >
               <TextField
-                autoComplete="fname"
-                name="carid"
+                autoComplete="vehicleId"
+                name="vehicleId"
                 onChange={this.handleChange}
                 variant="outlined"
                 required
                 fullWidth
-                id="carid"
+                id="vehicleId"
                 label="Enter the Id of the Car to be removed"
                 autoFocus
               />

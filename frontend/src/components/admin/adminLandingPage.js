@@ -45,10 +45,11 @@ class Landingpage extends Component {
 
 render(){
  
-  console.log(this.state.users)
+  // console.log(this.state.users)
   let details = this.state.users.map(product => {
+    console.log(product)
     return(
-        <UserDetails user_name={product.driverName} user_address={product.driverAddress} 
+        <UserDetails   user_name={product.driverName} user_address={product.driverAddress} 
          user_email={product.driverEmailId} user_memebership_end={product.driverMembershipEnd}/>   
     )
 })
@@ -59,11 +60,12 @@ render(){
       <Navbar/>    
      <div>
   <Grid container item xs={12} spacing={3}>
-  <Grid item xs={4}>
-  <Paper padding = 'theme.spacing(1)'
-     textAlign= 'center'
-  color='theme.palette.text.secondary'>{details}</Paper>
-        </Grid>
+  <Grid item xs={3}>
+  <Paper padding = 'theme.spacing(1)' color='theme.palette.text.secondary'>{details}</Paper>
+  <div></div>
+   </Grid>
+   <div>
+     </div>
   </Grid>
   </div>
  

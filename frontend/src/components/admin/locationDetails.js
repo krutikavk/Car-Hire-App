@@ -30,7 +30,7 @@ export default function LocationDetails(props) {
 //   }
 
   return (
-      <div className="fixed-bottom">
+     
     <Card className={classes.root} justify="center">
       <CardActionArea>
       <CardMedia
@@ -62,6 +62,6 @@ export default function LocationDetails(props) {
         
       </CardActions>
     </Card>
-    </div>
+  
   );
 }

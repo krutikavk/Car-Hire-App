@@ -58,15 +58,15 @@ render(){
 
       <Navbar/>    
      <div>
-  <Grid container item xs={12} spacing={3}>
+       <div>
+  <Grid container item xs={12} spacing={2}>
   <Grid item xs={4}>
-  <Paper padding = 'theme.spacing(1)'
-     textAlign= 'center'
-  color='theme.palette.text.secondary'>{details}</Paper>
+   <Paper padding = 'theme.spacing(1)'  color='theme.palette.text.secondary'>{details}</Paper> 
+  
         </Grid>
   </Grid>
   </div>
- 
+ </div>
   </div> 
   );
 }

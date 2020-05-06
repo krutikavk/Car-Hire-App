@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    background:'black',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -53,18 +54,26 @@ export default class AdminSignin extends Component {
   }
   handleClick(e){
     e.preventDefault();
-    const data={adminEmailId:this.state.email,adminPassword:this.state.password}
-    axios.post('http://localhost:8080/api/admins/login',data).then(response => {  
+    const data={
+      adminEmailId:this.state.email,
+      adminPassword:this.state.password
+    }
+
+
+    axios.post('http://localhost:8080/api/admins/login',data)
+    .then(response => {  
         if(response.status === 200){
-            window.open('/adminLanding', "_self");
-               }  
+           console.log(response)
+              window.open('/adminLanding', "_self");
+          }  
                else
                alert("Something went wrong");
-              })    }
+              })   
+             }
   
   
 render(){
-  
+  localStorage.setItem('emailid',this.state.email);
   return (
     <div> 
     <Navbar/>
@@ -131,6 +140,7 @@ render(){
       
     </Container>
     </div>
+   
   );
 }
 }
