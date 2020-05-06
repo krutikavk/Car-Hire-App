@@ -33,17 +33,19 @@ Cloud Deployment: AWS Autoscaling, Docker, AWS ELB, AWS API Gateway
 
 7. Driver can place a reservation for a selected vehicle by selecting a time for pickup. The application needs no human intervention like zipcar as the driver himself can pick a vehicle and start his reservation on the application and end it on the application when he drops the vehicle off at a location. 
 
-8. When the vehicle is returned, user can also leave a feedback on the vehicle and leave a rating out of 5. An admin can view the feedback on this reservation and act upon it.
+8. The driver is charged for the duration that the vehicle is picked up to return time. If the vehicle is returned back later than the drop off time, a late return fee is applied in addition to the rental fee.
 
-9. If the vehicle is returned back later than the drop off time, a late return fee is applied to the driver.
+9. When the vehicle is returned, user can also leave a feedback on the vehicle and leave a rating out of 5. An admin can view the feedback on this reservation and act upon it.
 
-10. Hibernate ensures concurrency to ensures no 2 concurrent transactions will result in an incorrect read/write transaction. 
+10. A driver can also cancel a reservation up to 1 hour ahead of the pickup time. If not, a one-hour rental is added to the price.
 
-11. Admin and user roles ensure multi-user access. There could be multiple admins assuming various roles in the application like manager, salesperson etc.
+11. Hibernate ensures concurrency to ensures no 2 concurrent transactions will result in an incorrect read/write transaction. 
 
-12. ReactJS ensures we have a simple and light-weight UI.
+12. Admin and user roles ensure multi-user access. There could be multiple admins assuming various roles in the application like manager, salesperson etc.
 
-13. Data for the application is stored and accessed from a AWS RDS database persistently. Since our data is simple and structured in a predictable manner, we chose to use MySQL as our primart database over NoSQL databases.
+13. ReactJS ensures we have a simple and light-weight UI.
+
+14. Data for the application is stored and accessed from a AWS RDS database persistently. Since our data is simple and structured in a predictable manner, we chose to use MySQL as our primart database over NoSQL databases.
 
 ## Cloud Architecture
 
