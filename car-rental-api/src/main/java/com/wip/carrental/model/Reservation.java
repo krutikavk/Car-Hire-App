@@ -131,20 +131,20 @@ public class Reservation{
 
 	//Krutika --1$ price discount for every 8 hours extra booked
 	public void setPrice() {
-		double discount = 1;
+
 		//1$ discount for every 8 hours booked
 		double basePrice = this.getVehicle().getVehicleBasePrice();
 		int hours = this.getHours();
 		this.price = 0;
-		int j = 0;
 		
-		for( int i = 0; i <= hours; i++) {
-			while(j <= i + 8 && j <= hours) {
-				this.price += basePrice + discount;
-				j++;
-			}
-			discount--;
-			i = j - 1;
+		
+		for( int i = 1; i <= hours; i++) {
+			this.price += basePrice;
+			
+			if(i % 8 == 0 && basePrice > 0) 
+				basePrice--;
+			
+			
 		}
 		
 	}
