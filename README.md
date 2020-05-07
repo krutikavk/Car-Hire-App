@@ -12,9 +12,9 @@
 We have developed a Spring MVC based web application to create a eco system where the users can book a car for a short trip/Weekend trip by registering into our application. We leveraged the java design patterns to develop a string backend that is deployed as an auto-scaled and load-balanced application on AWS. Frontend integration in ReactJS completes the end-to-end integration.
 
 ## Technology Stack
-FrontEnd : React
-Backend : Java Springboot with Hibernate 
-Testing: Postman
+FrontEnd : React </br>
+Backend : Java Springboot with Hibernate </br>
+Testing: Postman </br>
 Cloud Deployment: AWS Autoscaling, Docker, AWS ELB, AWS API Gateway
 
 ## Features
