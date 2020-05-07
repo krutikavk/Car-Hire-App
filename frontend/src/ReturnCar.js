@@ -11,7 +11,7 @@ import logo from './car.jpg';
 import { pink, blue } from '@material-ui/core/colors';
 import axios from 'axios'
 import Navbar from './Navigationbar'
-
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 //const classes = useStyles();
-export default class Cardetails extends Component{
+export default class ReturnCar extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -30,31 +30,16 @@ export default class Cardetails extends Component{
     };
     
     this.buttonClick=this.buttonClick.bind(this);
-    this.handleCancel=this.handleCancel.bind(this);
+    
   }
  
 
   buttonClick=(e)=>{
-    let id=localStorage.getItem("reservationID")
-    console.log(localStorage.getItem("reservationID"))
-    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/current').then(response => {  
-      if(response.status === 200){  
-        window.open('/return', "_self");    
-             } 
-             else if(response.status === 400){
-              alert("Some Error Occured")
-             }
-            }
-            
-            )      
-  }
-  handleCancel=(e)=>{
     let id=localStorage.getItem("reservationId")
-    console.log(localStorage.getItem("reservationID"))
-    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/cancel').then(response => {  
+    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/end').then(response => {  
       if(response.status === 200){  
-        alert("Reservation has been Canceled")
-        window.open('/dp', "_self");    
+        alert("Trip Ended")
+        window.open('/lp', "_self");    
              } 
              else if(response.status === 400){
               alert("Some Error Occured")
@@ -62,8 +47,9 @@ export default class Cardetails extends Component{
             }
             
             ) 
-    
+        
   }
+ 
 
   componentDidMount() {
     let selectedCarId = localStorage.getItem("selectedcar");
@@ -84,7 +70,7 @@ render(){
       <div><Navbar/>
       <div backGroundColor={blue}>
     <Card className={useStyles.root} 
-    style={{ display: 'inline-block', marginTop: '60px', marginLeft: '550px', width: '500px', height: '350px' }}>
+    style={{ display: 'inline-block', marginTop: '60px', marginLeft: '550px', width: '500px', height: '500px' }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -95,24 +81,32 @@ render(){
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           car name {this.state.prod.vehicleName}
+           Car Name {this.state.prod.vehicleName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          Car Cost ${this.state.prod.vehicleBasePrice} per hour
             
+            Car Cost ${this.state.prod.vehicleBasePrice} per hour<br/>
             
           </Typography>
         </CardContent>       
       </CardActionArea>
+
       <CardActions>
-      
+      <TextField
+      label="Add a Review"
+      value={this.state.hours}
+      name="hours"
+      onChange={this.handleHour}
+      />  
+       <Button size="small" color="primary" style={{marginLeft:'100px'}}  >
+               Add Review
+        </Button>      
+      </CardActions>
+<br/>
+      <CardActions>  
         <Button size="small" color="primary" style={{marginLeft:'100px'}} onClick={this.buttonClick} >
-                PickUp Car
-        </Button>
-        <Button size="small" color="primary" style={{marginLeft:'100px'}} onClick={this.handleCancel} >
-                Cancel Reservation
-        </Button>
-        
+               Return Car
+        </Button>   
       </CardActions>
     </Card>
     </div>

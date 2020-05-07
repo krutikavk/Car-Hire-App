@@ -9,6 +9,8 @@ import Removecar from './components/admin/removecar'
 import AdminSignin from './components/admin/adminsignin'
 import AdminLanding from './components/admin/adminLandingPage'
 import Pickup from './PickAndCancel'
+import Returncar from './ReturnCar'
+import Profile from './DriverProfile'
 //import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
@@ -28,8 +30,8 @@ function App() {
         <Route path="/adminsignin" component={AdminSignin}/>
         <Route path="/adminLanding" component={AdminLanding}/>
         <Route path="/Pickup" component={Pickup}/>
-       
-
+        <Route path="/return" component={Returncar}/>
+        <Route path="/profile" component={Profile}/>
         
     </Switch>
       

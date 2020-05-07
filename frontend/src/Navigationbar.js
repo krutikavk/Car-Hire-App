@@ -84,8 +84,11 @@ const classes = useStyles();
           <Typography className={classes.title} variant="h6" noWrap>
             Rent a Car
           </Typography>
-          <Button  href="/removecar" variant="h6" noWrap>
+          <Button  href="/profile" variant="h6" noWrap>
          Profile
+          </Button>
+          <Button  href="/lp" variant="h6" noWrap>
+         Home
           </Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -64,12 +64,15 @@ export default class Cardetails extends Component{
     const data={pickup:this.state.date,hours:this.state.hours}
     console.log(data)
     let selectedCarId = localStorage.getItem("selectedcar");
-   // let email=localStorage.getItem("email");
-   let email="user1@carrental.com"
+   let email=localStorage.getItem("email");
+   //let email="user3@carrental.com"
     //window.open('/Pickup', "_self");
     axios.post("http://localhost:8080/api/reservation?driverEmailId="+email+"&vehicle_id="+selectedCarId,data).then(response => {  
       if(response.status === 200){
-        window.open('/Pickup', "_self");        
+        localStorage.setItem("reservationID",response.data.reservationId)
+        console.log(localStorage.getItem("reservationID"));
+        alert("Car reserved")
+       window.open('/Pickup', "_self");        
              } 
              else if(response.status === 400){
               alert("Some Error Occured")
@@ -118,7 +121,7 @@ render(){
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             This is Great car<br></br>
-            Car Cost {this.state.prod.vehicleBasePrice} <br></br>
+            Car Cost {this.state.prod.vehicleBasePrice} per hour<br></br>
            
           <h3>Cost for this Booking is : {price}</h3> 
           </Typography>
