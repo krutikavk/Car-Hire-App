@@ -36,17 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default class Addcar extends Component  {
+export default class AddLocation extends Component  {
   constructor(props) {
     super(props);
     this.state = {
-       vehicleName: '', 
-       vehicleType: '', 
-       vehicleStatus: '',
-       vehicleBasePrice: '',
-       locationid: '',
-       time: ''
-      
+       city: '', 
+       capacity: '', 
+       address: ''
     };
     this.handleChange = this.handleChange.bind(this); 
     this.handleClick = this.handleClick.bind(this); 
@@ -59,25 +55,23 @@ export default class Addcar extends Component  {
 
     handleClick(e){
       e.preventDefault();
-     const parking_location_id = 2
+    
       const data={
-       vehicleName: this.state.vehicleName, 
-       vehicleType: this.state.vehicleType, 
-       vehicleStatus: this.state.vehicleStatus,
-       vehicleBasePrice: this.state.vehicleBasePrice,
-       locationid: this.state.locationid,
-       time: '',
-
+      city: this.state.city, 
+       capacity: this.state.capacity,
+       address: this.state.address,
       }
-       // console.log(data)
-        axios.post('http://localhost:8080/api/vehicle/' + this.state.locationid , data)
+        console.log(data)
+        axios.post('http://localhost:8080/api/locations/', data)
             .then(response => {  
               console.log(response)  
-                if(response.status === 200){
-                  alert("added car successfully")
+                if(response.status >= 400){
+                    window.alert("Something went wrong");
                        }  
-                       else
-                       alert("Something went wrong");
+                       else{
+                        window.alert("added location successfully")
+                       }
+                      
                       } )
                     }
 render(){
@@ -97,34 +91,36 @@ render(){
             marginLeft: "100px",
             
           }} component="h1" variant="h5">
-           Add Vehicle
+           Add New Location
         </Typography>
         <br/>
         <form className={useStyles.form} >
           <Grid container spacing={2}>
             <Grid item xs={12} >
               <TextField
-                autoComplete="vehicleName"
-                name="vehicleName"
+                autoComplete="city"
+                name="city"
                 onChange={this.handleChange}
                 variant="outlined"
                 required
                 fullWidth
-                id="vehicleName"
-                label="Name"
+                id="city"
+                label="LocationCity"
                 autoFocus
               />
             </Grid>
+           
+          
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="vehicleType"
-                label="Vehicle Type"
-                name="vehicleType"
+                id="capacity"
+                label="Capacity"
+                name="capacity"
                 onChange={this.handleChange}
-                autoComplete="vehicleType"
+                autoComplete="capacity"
               />
             </Grid>
             <Grid item xs={12}>
@@ -132,49 +128,14 @@ render(){
                 variant="outlined"
                 required
                 fullWidth
-                id="vehicleStatus"
-                label="Status"
-                name="vehicleStatus"
+                id="address"
+                label="Address"
+                name="address"
                 onChange={this.handleChange}
-                autoComplete="vehicleStatus"
+                autoComplete="address"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="vehicleBasePrice"
-                label="BasePrice"
-                name="vehicleBasePrice"
-                onChange={this.handleChange}
-                autoComplete="vehicleBasePrice"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="time"
-                label="Time"
-                name="time"
-                onChange={this.handleChange}
-                autoComplete="time"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="locationid"
-                label="Location"
-                name="locationid"
-                onChange={this.handleChange}
-                autoComplete="locationid"
-              />
-            </Grid>
+            
           </Grid>
           <br/>
           <Button
@@ -185,7 +146,8 @@ render(){
             className={useStyles.submit}
             onClick={this.handleClick}
           >
-           Add Car
+               
+           Add Location
           </Button>
          
           

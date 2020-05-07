@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
+import Navbar from './components/navbar';
 // constructor(props){
 //   super(props);
 //     this.state={
@@ -97,6 +98,8 @@ export default class SignUp extends Component  {
 render(){
   
   return (
+    <div> 
+      <Navbar/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={useStyles.paper}>
@@ -224,6 +227,7 @@ render(){
       </div>
       
     </Container>
+    </div>
   );
 }
 }

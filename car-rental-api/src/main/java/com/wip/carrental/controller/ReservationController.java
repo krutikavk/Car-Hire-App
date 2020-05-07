@@ -98,6 +98,7 @@ public class ReservationController {
     
     
     //API to cancel a reservation--driver reservation list will be updated, vehicle status changed to Available
+    //If cancelled within an hour from pickup, one hour's price will be added to final price
     @PutMapping("/reservation/{reservationId}/cancel")
     public ResponseEntity<?> cancelReservation(@PathVariable Long reservationId) {
     	Optional<Reservation> r = reservationRepository.findById(reservationId);
@@ -105,7 +106,27 @@ public class ReservationController {
     	if(r.isPresent()) {
     		Reservation reservation = r.get();
     		if(reservation.getStatus() == ReservationStatus.UPCOMING) {
-	    		Vehicle vehicle = reservation.getVehicle();
+    			
+    			Vehicle vehicle = reservation.getVehicle();
+    			
+    			Calendar cancelCal = Calendar.getInstance();
+		        Date cancelTime = cancelCal.getTime();
+		        
+		        Calendar pickupCal = Calendar.getInstance();
+		        pickupCal.setTime(reservation.getPickup());
+		        
+		        //Add 1 to pickup time to check if 
+		        pickupCal.add(Calendar.HOUR_OF_DAY, -1);
+		        Date pickupTime = pickupCal.getTime();
+		        
+		        //System.out.println("DATE COMPARE OUTPUT " + returnTime.compareTo(pickupTime));
+
+		        if(cancelTime.compareTo(pickupTime) <= 0) {
+		        	//cancel occurs within 1 hour of designated pickup time
+		        	System.out.println("CAME IN HERE");
+		        	reservation.addLateFee(vehicle.getVehicleBasePrice());
+		        }
+		        
 	    		vehicle.setStatus(VehicleStatus.AVAILABLE);
 	    		reservation.setStatus(ReservationStatus.CANCELLED);
 	    		return ResponseEntity.ok(reservationRepository.save(reservation));
@@ -176,7 +197,7 @@ public class ReservationController {
     		        if(returnTime.compareTo(pickupTime) <= 0) {
     		        	//return occurs after designated pickup time
     		        	System.out.println("CAME IN HERE");
-    		        	reservation.addLateFeee();
+    		        	reservation.addLateFee(100);
     		        	latefee = true;
     		        }
     		        

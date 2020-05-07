@@ -37,6 +37,11 @@ public class DriverController {
         return driverRepository.findById(id);
     }
     
+    @GetMapping("/driver/reservations")
+    public List<Reservation> getReservations(@RequestBody Driver driver) {
+    	return driver.getReservations();
+    }
+    
 
     @PostMapping("/drivers")
     public ResponseEntity<?> postDriver(@RequestBody Driver driverObj) {
