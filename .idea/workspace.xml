@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ca2f97-8fde-4ce2-a818-79fd665ba4ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/car-rental-api/src/main/java/com/wip/carrental/controller/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-rental-api/src/main/java/com/wip/carrental/controller/VehicleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +20,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/car-rental-api" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -31,7 +34,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588276743024</updated>
+      <workItem from="1588821162238" duration="194000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1588821336415">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="580" y="187" key="FileChooserDialogImpl/62.0.1474.864@62.0.1474.864" timestamp="1588821336415" />
   </component>
 </project>
