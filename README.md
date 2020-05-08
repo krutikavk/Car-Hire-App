@@ -71,7 +71,7 @@ We used Jenkins for our continous integration purpose when we push the code to t
 ## Documentation 
 </br>
 ### Sprint Task Sheet
-https://docs.google.com/spreadsheets/d/1bwUoeZ0_PFh3q6xMzNdLJCtQJ6lX0SsjbzNv-Miogr0/edit?usp=sharing
+Documentation/Cmpe202 Sprint Task Sheet.xlsx
 
 ### Project journal
 Documentation/ProjectJournal.md
