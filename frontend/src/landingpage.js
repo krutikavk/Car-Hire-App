@@ -20,9 +20,9 @@ export default class Landingpage extends Component {
     this.state={cars:[]}
   }
   componentDidMount(){
-   console.log("inside did mount")
-  // console.log("http://localhost:8080/api/vehicles")
-    axios.get('http://localhost:8080/api/vehicles')
+   const data={city:localStorage.getItem("city"), type:localStorage.getItem("type")}
+  
+    axios.post('http://localhost:8080/api/vehicles/search',data)
             .then((response) => {              
               console.log(response.data);
               this.setState({
@@ -45,13 +45,10 @@ render(){
   return (
     <div >
       <Navbar/>
-      <br></br>
-      <br></br>
       <Grid container  spacing={20}>
       {details}
-      
-
       </Grid>
+      
       
     </div>
   );

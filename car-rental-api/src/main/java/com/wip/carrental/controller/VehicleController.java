@@ -88,22 +88,13 @@ public class VehicleController {
     }
 
     @PostMapping("/vehicles/search")
-<<<<<<< HEAD
-    public ResponseEntity<?> SearchVehiclesByLocation(@RequestBody ParkingLocation location) {
-=======
     public ResponseEntity<?> SearchVehicles(@RequestBody SearchRequestBody location) {
->>>>>>> 2eb415e24b4b807533c4d36c4e4458a71fe7018d
-
         try {
             ArrayList<ParkingLocation> parkingLocations = (ArrayList<ParkingLocation>) parkingLocationRepository.findAll();
 
-<<<<<<< HEAD
-            List<ParkingLocation> cityLocations = parkingLocations.stream().filter(s -> s.getCity().equalsIgnoreCase(location.getCity())).collect(Collectors.toList());
-=======
             String requestCity = location.getCity()== null ? "" : location.getCity();
             String type = location.getType() == null ? "" : location.getType();
             List<ParkingLocation> cityLocations = parkingLocations.stream().filter(s -> s.getCity().toLowerCase().contains(requestCity.toLowerCase())).collect(Collectors.toList());
->>>>>>> 2eb415e24b4b807533c4d36c4e4458a71fe7018d
 
             ArrayList<Vehicle> result = new ArrayList<>();
 

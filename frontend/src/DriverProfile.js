@@ -48,7 +48,7 @@ export default class Profile extends Component {
       
       drivername:"",
       address:"",
-      license:"",
+      password:"",
       reservation:[]
     }
     this.handleChange = this.handleChange.bind(this); 
@@ -61,17 +61,17 @@ export default class Profile extends Component {
   }
   handleClick(e){
      e.preventDefault();
-   
-    //  axios.put('http://localhost:8080/api/drivers/'+data).then(response => {  
-    //     if(response.status === 200){
-    //       localStorage.setItem("email",this.state.email)
-    //         window.open('/lp', "_self");
-    //            }  
-    //            else
-    //            alert("Something went wrong");
-    //           })  
+   const data={driverName:this.state.drivername,driverAddress:this.state.address,driverPassword:this.state.password}
+     axios.put('http://localhost:8080/api/drivers/'+localStorage.getItem("email"),data).then(response => {  
+        if(response.status === 200){
+          console.log("User details updated succesfully")
+            window.open('/profile', "_self");
+               }  
+               else
+               alert("Something went wrong");
+              })  
               }
-              componentDidMount(){
+componentDidMount(){
                 let email=localStorage.getItem("email");
 //let email="user2@carrental.com";
 axios.get('http://localhost:8080/api/drivers/' + email)
@@ -80,7 +80,6 @@ axios.get('http://localhost:8080/api/drivers/' + email)
   this.setState({
    drivername:response.data.driverName,
    address:response.data.driverAddress,
-   license:response.data.driverLicense,
    reservation:this.state.reservation.concat(response.data.reservations)
   });
 });
@@ -90,8 +89,8 @@ axios.get('http://localhost:8080/api/drivers/' + email)
 render(){
     let details = this.state.reservation.map(r => {
         return(
-        <div><h3>Reservation Id :{r.reservationId}</h3>
-        <h3>Reservation Status:{r.status}</h3><br/></div>
+        <div><h5>Reservation Id :{r.reservationId}</h5>
+        <h5>Reservation Status:{r.status}</h5><br/></div>
         )
     })
     console.log(this.state.reservation)
@@ -131,10 +130,10 @@ render(){
             margin="normal"
             required
             fullWidth
-            label="License"
-            name="license"
+            label="update password"
+            name="password"
             onChange={this.handleChange} 
-            value={this.state.license}
+            value={this.state.password}
           />
 
           <Button   variant="h6" noWrap onClick={this.handleClick}>
