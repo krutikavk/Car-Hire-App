@@ -59,12 +59,12 @@ public class ReservationController {
     	
     	//Check for valid driverEmailId and vehicle_id
     	if( driver == null && vehicle == null) {
-    		throw new ResourceNotFoundException("Driver with ID " + driverEmailId + " not found " 
+			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Driver with ID " + driverEmailId + " not found "
     	                                         + "Vehicle with ID " + vehicle_id + " not found"); 
     	} else if (driver == null ) {
-    		throw new ResourceNotFoundException("Driver with ID " + driverEmailId + " not found ");
+			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Driver with ID " + driverEmailId + " not found ");
     	} else if (vehicle == null ) {
-    		throw new ResourceNotFoundException("Vehicle with ID " + vehicle_id + " not found");
+			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Vehicle with ID " + vehicle_id + " not found");
     	}
     	
     	//Driver and Vehicle both exist--check if the driver has any existing reservations
@@ -134,7 +134,7 @@ public class ReservationController {
     			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Trying to cancel a reservation that has already started/ended " + reservation.getStatus());
     		}
     	} else {
-    		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Reservation with id = " + reservationId + " not found");
     	}
     	
     }
@@ -159,7 +159,7 @@ public class ReservationController {
     			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Trying update reservation with status " + reservation.getStatus());
     		}
     	} else {
-    		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Reservation with id = " + reservationId + " not found");
     	}
     	
     }
@@ -216,7 +216,7 @@ public class ReservationController {
     		}
 
     	} else {
-    		throw new ResourceNotFoundException("Reservation with id = " + reservationId + " not found");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Reservation with id = " + reservationId + " not found");
     	}
     	
     }
@@ -250,7 +250,7 @@ public class ReservationController {
 			reservationRepository.deleteById(reservationId);
 			return ResponseEntity.ok("Reservation with " + reservationId + " deleted");
 		}
-		throw new ResourceNotFoundException("Vehicle with " + reservationId + " not found");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Vehicle with " + reservationId + " not found");
 
 	}    
 	 

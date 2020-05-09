@@ -87,7 +87,12 @@ export default class Navbar extends Component{
     e.preventDefault()
     localStorage.setItem("city",this.state.city)
     localStorage.setItem("type",this.state.type)
-    window.open('/lp','_self')
+    window.open('/userHome','_self')
+  }
+
+  logout = e =>{
+    localStorage.clear()
+    window.open("/",'_self')
   }
 
 
@@ -100,8 +105,8 @@ render(){
       cartypes.push(<option value="">  </option>);
     
   return (
-    <div >
-      <AppBar position="static">
+    <div>
+      <AppBar position="static" style={{background:'#28a745'}}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -117,12 +122,19 @@ render(){
           <Button  href="/profile" variant="h6" noWrap>
          Profile
           </Button>
-          <Button  href="/lp" variant="h6" noWrap>
+          <Button  href="/userHome" variant="h6" noWrap>
          Home
+          </Button>
+          <Button  href="/Pickup" variant="h6" noWrap>
+             Bookings
           </Button>
           <div className={classes.search}>
             
             <InputBase
+                style={{background:'white',
+                  paddingLeft: '12px',
+                  marginRight: '10px',
+                  borderRadius: '10px'}}
               placeholder="Search…"
               name="city"
               onChange={this.handleChange}
@@ -137,6 +149,7 @@ render(){
           
             <div>
               <select
+                  style={{padding:'4%',borderRadius:'6px'}}
               name="type"
                 value={this.state.cartype}
                 onChange={this.handleChange}
@@ -147,7 +160,7 @@ render(){
             </div>
             <Button onClick={this.handleClick}>Search</Button>
           <br/>
-          <Button  href="/signin" variant="h6" noWrap>
+          <Button variant="h6" noWrap onClick={this.logout}>
              Logout
           </Button>
         </Toolbar>

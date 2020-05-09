@@ -65,7 +65,7 @@ export default class Profile extends Component {
      axios.put('http://localhost:8080/api/drivers/'+localStorage.getItem("email"),data).then(response => {  
         if(response.status === 200){
           console.log("User details updated succesfully")
-            window.open('/profile', "_self");
+            window.open('/userHome', "_self");
                }  
                else
                alert("Something went wrong");
@@ -82,14 +82,18 @@ axios.get('http://localhost:8080/api/drivers/' + email)
    address:response.data.driverAddress,
    reservation:this.state.reservation.concat(response.data.reservations)
   });
-});
+}).catch(err => {
+
+        alert(err.response.data);
+    }
+);
  }
   
   
 render(){
     let details = this.state.reservation.map(r => {
         return(
-        <div><h5>Reservation Id :{r.reservationId}</h5>
+        <div style={{padding:'2%',border:'1px solid black'}}><h5>Reservation Id :{r.reservationId}</h5>
         <h5>Reservation Status:{r.status}</h5><br/></div>
         )
     })
@@ -139,9 +143,10 @@ render(){
             value={this.state.password}
           />
 
-          <Button   variant="h6" noWrap onClick={this.handleClick}>
+          <Button  style={{background:'#28a745'}} variant="h6" noWrap onClick={this.handleClick}>
         Save Changes
           </Button>
+            <hr></hr>
           <h3>Driver Reservations</h3>
 
 {details}

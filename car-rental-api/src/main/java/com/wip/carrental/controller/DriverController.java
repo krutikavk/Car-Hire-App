@@ -68,9 +68,9 @@ public class DriverController {
             if (checkPass(requestObj.getDriverPassword(),driver.getDriverPassword())) {
                 return ResponseEntity.ok(driver);
             }
-            return ResponseEntity.status(403).eTag("password is not matching").build();
+            return ResponseEntity.status(403).body("password is not matching");
         }
-        return ResponseEntity.notFound().eTag("driver not found").build();
+        return ResponseEntity.status(400).body("driver not found");
     }
 
     private boolean checkPass(String plainPassword, String hashedPassword) {
