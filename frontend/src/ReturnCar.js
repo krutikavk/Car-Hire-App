@@ -94,7 +94,7 @@ render(){
 
       <CardActions>
       <TextField
-      label="Add a Review"
+      label="Add a Rating"
       value={this.state.hours}
       name="hours"
       onChange={this.handleHour}
