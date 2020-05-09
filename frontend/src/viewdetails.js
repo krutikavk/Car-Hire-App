@@ -21,6 +21,9 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
+
+import DateTimePicker from 'react-datetime-picker'
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -45,13 +48,36 @@ export default class Cardetails extends Component{
     this.state = {
       prod: [],
       hours:0,
-      date: "2020-05-09T11:30"
+      date: new Date(),
+
     };
-    this.onChange=this.onChange.bind(this);
-    this.buttonClick=this.buttonClick.bind(this);
+    // this.h=this.setTime.bind(this);
+    this.bookthiscar=this.bookthiscar.bind(this);
     this.handleHour=this.handleHour.bind(this);
   }
-  onChange = date => this.setState({ date })
+
+  // setTime = e => {
+  // this.setState({ 
+  //   [e.target.date]: e.target.value
+  //  });
+
+  // }
+
+  onChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
+
+
+  handleChange = (event) => {
+    this.logs.unshift("change: " + event.target.value);
+
+    this.setState({
+        value: event.target.value,
+        events: this.logs.slice()
+    });
+}
 
   handleHour=(e)=>{
     this.setState({
@@ -60,11 +86,17 @@ export default class Cardetails extends Component{
 
   }
 
-  buttonClick=(e)=>{
-    const data={pickup:this.state.date,hours:this.state.hours}
+  bookthiscar=(e)=>{
+    const data={
+      pickup:this.state.date,
+      hours:this.state.hours
+    }
     console.log(data)
+
     let selectedCarId = localStorage.getItem("selectedcar");
-   let email=localStorage.getItem("email");
+    let email=localStorage.getItem("email");
+
+
    //let email="user3@carrental.com"
     //window.open('/Pickup', "_self");
     axios.post("http://localhost:8080/api/reservation?driverEmailId="+email+"&vehicle_id="+selectedCarId,data).then(response => {  
@@ -100,6 +132,7 @@ export default class Cardetails extends Component{
              
  
 render(){
+  console.log()
   let price=this.state.prod.vehicleBasePrice*this.state.hours;
   return (
     <div>
@@ -130,28 +163,42 @@ render(){
       <CardActions>
       
     <form className={useStyless.container} noValidate>
-      <TextField
+      {/* <TextField
         id="datetime-local"
         label="Select Date and Time"
         type="datetime-local"
-        dateFormat="MM d, yyyy h:mm aa"
-        onChange={this.onChange}
+        dateFormat="yyyy-MM-dd, h:mm aa"
+        onChange={this.setTime}
         value={this.state.date}
         className={useStyless.textField}
         InputLabelProps={{
           shrink: true,
         }}
-      />
+      /> */}
+      <div>
+        <DateTimePicker
+          onChange={this.onChange}
+          value={this.state.date}
+        />
+      </div>
       <TextField
       label="Select No of Hours"
       value={this.state.hours}
       name="hours"
       onChange={this.handleHour}
       />
-
+{/* <InputMoment
+  moment={this.state.moment}
+  onChange={this.handleChange}
+  onSave={this.handleSave}
+  minStep={1} // default
+  hourStep={1} // default
+  prevMonthIcon="ion-ios-arrow-left" // default
+  nextMonthIcon="ion-ios-arrow-right" // default
+/> */}
     </form>
     <br/>
-        <Button size="small" color="primary" style={{marginLeft:'100px'}} onClick={this.buttonClick}>
+        <Button size="small" color="primary" style={{marginLeft:'100px'}} onClick={this.bookthiscar}>
                 Book this car
         </Button>
         

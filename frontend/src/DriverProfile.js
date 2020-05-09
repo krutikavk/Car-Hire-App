@@ -19,7 +19,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Navbar from './Navigationbar'
-
+import PaymentForm from '../src/components/creditcard'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -97,6 +97,9 @@ render(){
   return (
       <div>
           <Navbar/>
+        <div>
+        <PaymentForm/>
+          </div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={useStyles.paper}>
@@ -148,6 +151,7 @@ render(){
       </div>
       
     </Container>
+  
     </div>
   );
 }

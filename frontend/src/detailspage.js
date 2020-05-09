@@ -8,22 +8,38 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import image from './car.jpg';
-const useStyles = makeStyles({
+
+
+const useStyles =makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
-});
+  media: {
+    height: 140,
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 export default function Details(props) {
   const classes = useStyles();
   function handleClick(e) {
     e.preventDefault(); 
+    // console.log(this.state.location)
     localStorage.setItem("selectedcar", props.car_id);
-   window.open('/dp', "_self");
+   window.open('/carDetailsPage', "_self");
   }
 
   return (
-      <div className="fixed-bottom">
     <Card className={classes.root} justify="center">
       <CardActionArea>
         <CardMedia
@@ -35,10 +51,16 @@ export default function Details(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-           {props.car_name}
+              {props.car_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Car Description :{props.car_description}
+            Type :{props.car_type}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Price : {props.car_baseprice}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Location : {props.car_location}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -49,6 +71,6 @@ export default function Details(props) {
         
       </CardActions>
     </Card>
-    </div>
+    
   );
 }

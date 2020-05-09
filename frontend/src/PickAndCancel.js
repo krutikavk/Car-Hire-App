@@ -54,7 +54,7 @@ export default class Cardetails extends Component{
     axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/cancel').then(response => {  
       if(response.status === 200){  
         alert("Reservation has been Canceled")
-        window.open('/dp', "_self");    
+        window.open('/userHome', "_self");    
              } 
              else if(response.status === 400){
               alert("Some Error Occured")

@@ -42,10 +42,10 @@ export default class Addcar extends Component  {
     this.state = {
        vehicleName: '', 
        vehicleType: '', 
-       vehicleStatus: '',
+      //  vehicleStatus: '',
        vehicleBasePrice: '',
        locationid: '',
-       time: ''
+       
       
     };
     this.handleChange = this.handleChange.bind(this); 
@@ -59,18 +59,17 @@ export default class Addcar extends Component  {
 
     handleClick(e){
       e.preventDefault();
-     const parking_location_id = 2
+    //  const parking_location_id = 2
       const data={
        vehicleName: this.state.vehicleName, 
        vehicleType: this.state.vehicleType, 
-       vehicleStatus: this.state.vehicleStatus,
+      //  vehicleStatus: 'AVAILABLE',
        vehicleBasePrice: this.state.vehicleBasePrice,
-       locationid: this.state.locationid,
-       time: '',
+       locationid: this.state.locationid
 
       }
        // console.log(data)
-        axios.post('http://localhost:8080/api/vehicle/' + this.state.locationid , data)
+        axios.post('http://localhost:8080/api/vehicles/' + this.state.locationid , data)
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){
@@ -127,7 +126,7 @@ render(){
                 autoComplete="vehicleType"
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -138,7 +137,7 @@ render(){
                 onChange={this.handleChange}
                 autoComplete="vehicleStatus"
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -151,18 +150,7 @@ render(){
                 autoComplete="vehicleBasePrice"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="time"
-                label="Time"
-                name="time"
-                onChange={this.handleChange}
-                autoComplete="time"
-              />
-            </Grid>
+         
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

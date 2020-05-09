@@ -14,7 +14,7 @@ import AddLocation from './components/admin/addLocation'
 import Pickup from './PickAndCancel'
 import Returncar from './ReturnCar'
 import Profile from './DriverProfile'
-import N from './Navigationbar'
+import UserNavBar from './Navigationbar'
 //import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = ()  => {
@@ -29,10 +29,10 @@ const App = ()  => {
      <div>
         <Route path="/signin" component={Signin}/>
         <Route path="/signup" component={Signup}/>
-        <Route path="/lp" component={Landingpage}/>
-        <Route path="/dp" component={Viewdetails}/>
+        <Route path="/userHome" component={Landingpage}/>
+        <Route path="/carDetailsPage" component={Viewdetails}/>
         <Route path="/nbar" component={Navbar}/>
-        <Route path="/navbar" component={N}/>
+        <Route path="/navbar" component={UserNavBar}/>
 
 
         <Route path="/locations" component={Location}/>

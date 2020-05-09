@@ -52,16 +52,16 @@ function terminateuser (e) {
 
      e.preventDefault();
         
-    //  console.log(this.state.vehicleId)
-    //  axios.delete('http://localhost:8080/api/driver/' + props.user_email)
-    //      .then(response => {  
-    //        console.log(response)  
-    //          if(response.status === 200){
-    //              window.open('/adminLanding', "_self");
-    //                 }  
-    //                 else
-    //                 window.alert("Something went wrong");
-    //                } )
+     console.log(this.state.vehicleId)
+     axios.delete('http://localhost:8080/api/driver/' + props.user_email)
+         .then(response => {  
+           console.log(response)  
+             if(response.status === 200){
+                 window.open('/adminLanding', "_self");
+                    }  
+                    else
+                    window.alert("Something went wrong");
+                   } )
                   } 
  
 

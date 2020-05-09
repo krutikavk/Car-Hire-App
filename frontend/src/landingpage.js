@@ -1,18 +1,25 @@
 
 import React ,{Component} from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
+import Navbar from '../src/Navigationbar';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
+import {  makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Details from './detailspage';
-import Navbar from './Navigationbar'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 export default class Landingpage extends Component {
   constructor(props){
@@ -20,7 +27,10 @@ export default class Landingpage extends Component {
     this.state={cars:[]}
   }
   componentDidMount(){
-   const data={city:localStorage.getItem("city"), type:localStorage.getItem("type")}
+   const data={
+      city:localStorage.getItem("city"),
+      type:localStorage.getItem("type")
+    }
   
     axios.post('http://localhost:8080/api/vehicles/search',data)
             .then((response) => {              
@@ -37,20 +47,20 @@ render(){
   console.log(this.state.cars)
   let details = this.state.cars.map(product => {
     return(
-        <Details car_name={product.vehicleName} car_description={product.vehicleType} 
-         car_id={product.vehicleId}/>   
+        <Details car_name={product.vehicleName} car_type={product.vehicleType} 
+         car_id={product.vehicleId} car_baseprice ={product.vehicleBasePrice} car_location = {product.parkingLocation.city}/>   
     )
 })
 //product_id={product._id}
   return (
-    <div >
-      <Navbar/>
-      <Grid container  spacing={20}>
-      {details}
-      </Grid>
-      
-      
-    </div>
+    <div>
+    <Navbar/>    
+   <div>
+   <div style={{display: 'flex', justifyContent: 'space-evenly',flexWrap: 'wrap', paddingLeft:'10%' ,width:'90%'}}>
+     {details}
+</div>
+</div>
+</div> 
   );
 }
 }
