@@ -62,7 +62,7 @@ export default class AddLocation extends Component  {
        address: this.state.address,
       }
         console.log(data)
-        axios.post('http://localhost:8080/api/locations/', data)
+        axios.post('http://34.217.126.203:8080/api/locations/', data)
             .then(response => {  
               console.log(response)  
                 if(response.status >= 400){

@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://18.237.161.178:3000")
 @Api(value = "Driver Management System")
 public class DriverController {
     @Autowired

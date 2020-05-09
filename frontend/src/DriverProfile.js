@@ -62,7 +62,7 @@ export default class Profile extends Component {
   handleClick(e){
      e.preventDefault();
    const data={driverName:this.state.drivername,driverAddress:this.state.address,driverPassword:this.state.password}
-     axios.put('http://localhost:8080/api/drivers/'+localStorage.getItem("email"),data).then(response => {  
+     axios.put('http://34.217.126.203:8080/api/drivers/'+localStorage.getItem("email"),data).then(response => {  
         if(response.status === 200){
           console.log("User details updated succesfully")
             window.open('/userHome', "_self");
@@ -74,7 +74,7 @@ export default class Profile extends Component {
 componentDidMount(){
                 let email=localStorage.getItem("email");
 //let email="user2@carrental.com";
-axios.get('http://localhost:8080/api/drivers/' + email)
+axios.get('http://34.217.126.203:8080/api/drivers/' + email)
 .then(response => {        
  console.log(response);
   this.setState({

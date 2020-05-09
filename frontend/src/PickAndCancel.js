@@ -37,7 +37,7 @@ export default class Cardetails extends Component{
   buttonClick=(e)=>{
     let id=localStorage.getItem("reservationID")
     console.log(localStorage.getItem("reservationID"))
-    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/current').then(response => {  
+    axios.put('http://34.217.126.203:8080/api/reservation/'+localStorage.getItem("reservationID")+'/current').then(response => {  
       if(response.status === 200){  
         window.open('/return', "_self");    
              } 
@@ -51,7 +51,7 @@ export default class Cardetails extends Component{
   handleCancel=(e)=>{
     let id=localStorage.getItem("reservationId")
     console.log(localStorage.getItem("reservationID"))
-    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/cancel').then(response => {  
+    axios.put('http://34.217.126.203:8080/api/reservation/'+localStorage.getItem("reservationID")+'/cancel').then(response => {  
 
         if(response.status === 200){
           localStorage.removeItem("selectedcar");
@@ -70,7 +70,7 @@ export default class Cardetails extends Component{
   componentDidMount() {
     let selectedCarId = localStorage.getItem("selectedcar");
     console.log(selectedCarId)
-    axios.get('http://localhost:8080/api/vehicles/' + selectedCarId)
+    axios.get('http://34.217.126.203:8080/api/vehicles/' + selectedCarId)
       .then(response => {        
        console.log(response);
         this.setState({

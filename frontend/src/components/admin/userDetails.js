@@ -53,7 +53,7 @@ function terminateuser (e) {
      e.preventDefault();
         
      console.log(this.state.vehicleId)
-     axios.delete('http://localhost:8080/api/driver/' + props.user_email)
+     axios.delete('http://34.217.126.203:8080/api/driver/' + props.user_email)
          .then(response => {  
            console.log(response)  
              if(response.status === 200){

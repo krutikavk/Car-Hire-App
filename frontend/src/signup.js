@@ -85,7 +85,7 @@ export default class SignUp extends Component  {
         driverPassword:this.state.password,driverState:this.state.stateName}
         console.log("sending data"+ data)
         console.log(data)
-        axios.post('http://localhost:8080/api/drivers',data)
+        axios.post('http://34.217.126.203:8080/api/drivers',data)
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){

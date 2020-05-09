@@ -60,7 +60,7 @@ export default class AdminSignin extends Component {
     }
 
 
-    axios.post('http://localhost:8080/api/admins/login',data)
+    axios.post('http://34.217.126.203:8080/api/admins/login',data)
     .then(response => {  
         if(response.status === 200){
            console.log(response)

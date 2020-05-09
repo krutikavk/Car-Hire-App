@@ -116,7 +116,7 @@ export default class Cardetails extends Component {
 
         //let email="user3@carrental.com"
         //window.open('/Pickup', "_self");
-        axios.post("http://localhost:8080/api/reservation?driverEmailId=" + email + "&vehicle_id=" + selectedCarId, data)
+        axios.post("http://34.217.126.203:8080/api/reservation?driverEmailId=" + email + "&vehicle_id=" + selectedCarId, data)
             .then(response => {
                     if (response.status === 200) {
                         localStorage.setItem("reservationID", response.data.reservationId)

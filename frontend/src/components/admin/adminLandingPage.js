@@ -32,7 +32,7 @@ class Landingpage extends Component {
   componentDidMount(){
     // const classes = useStyles();
     
-    axios.get('http://localhost:8080/api/drivers')
+    axios.get('http://34.217.126.203:8080/api/drivers')
             .then((response) => {
               // console.log(response.data);
               this.setState({
