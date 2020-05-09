@@ -37,9 +37,10 @@ export default class ReturnCar extends Component{
   buttonClick=(e)=>{
     let id=localStorage.getItem("reservationId")
     axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/end').then(response => {  
-      if(response.status === 200){  
+      if(response.status === 200){
+          localStorage.removeItem("selectedcar");
         alert("Trip Ended")
-        window.open('/lp', "_self");    
+        window.open('/userHome', "_self");
              } 
              else if(response.status === 400){
               alert("Some Error Occured")

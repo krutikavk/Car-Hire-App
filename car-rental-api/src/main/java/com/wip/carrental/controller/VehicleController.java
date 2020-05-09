@@ -35,12 +35,18 @@ public class VehicleController {
     private ReservationRepository reservationRepository;
 
     @GetMapping("/vehicles")
-    public List<Vehicle> getAllVehicles() {
-        return (List<Vehicle>) vehicleRepository.findAll();
+    public ArrayList<Vehicle> getAllVehicles() {
+        return (ArrayList<Vehicle>) vehicleRepository.findAll();
     }
 
+//    @GetMapping("/vehicles/{locationId}")
+//    public ArrayList<Vehicle> getVehiclesByLocation(@PathVariable long locationId) {
+//        ParkingLocation parkingLocation =  parkingLocationRepository.findById(locationId).orElse(null);
+//        return vehicleRepository.findAllByParkingLocation(parkingLocation);
+//    }
+
     @GetMapping("/vehicles/{vehicleId}")
-    public Optional<Vehicle> getAllVehicles(@PathVariable Long vehicleId) {
+    public Optional<Vehicle> getVehicleById(@PathVariable Long vehicleId) {
         return vehicleRepository.findById(vehicleId);
     }
 
@@ -111,7 +117,7 @@ public class VehicleController {
 
             if (type.equalsIgnoreCase("sedan") || type.equalsIgnoreCase("truck") || type.equalsIgnoreCase("suv") || type.equalsIgnoreCase("small")) {
                 for (ParkingLocation city : cityLocations) {
-                    ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city).orElse(null);
+                    ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city);
 
                     if (vehicles != null) {
                         result.addAll(Objects.requireNonNull(vehicles.stream().filter(s -> s.getVehicleType().toString().equalsIgnoreCase(type)).collect(Collectors.toList())));
@@ -120,7 +126,7 @@ public class VehicleController {
 
                 if (result.size() == 0) {
                     for (ParkingLocation city : parkingLocations) {
-                        ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city).orElse(null);
+                        ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city);
 
                         if (vehicles != null) {
                             result.addAll(Objects.requireNonNull(vehicles.stream().filter(s -> s.getVehicleType().toString().equalsIgnoreCase(type)).collect(Collectors.toList())));
@@ -129,7 +135,7 @@ public class VehicleController {
                 }
             } else {
                 for (ParkingLocation city : cityLocations) {
-                    ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city).orElse(null);
+                    ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) vehicleRepository.findAllByParkingLocation(city);
 
                     if (vehicles != null) {
                         result.addAll(Objects.requireNonNull(vehicles));

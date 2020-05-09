@@ -40,7 +40,7 @@ export default function Details(props) {
   }
 
   return (
-    <Card className={classes.root} justify="center">
+    <Card className={classes.root} justify="center" style={{marginBottom:'5%'}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -49,7 +49,7 @@ export default function Details(props) {
           src={image}
           title="car image"
         />
-        <CardContent>
+        <CardContent style={{background:'#eee'}}>
           <Typography gutterBottom variant="h5" component="h2">
               {props.car_name}
           </Typography>

@@ -23,7 +23,7 @@ export default class PaymentForm extends React.Component {
     
     render() {
       return (
-        <div id="PaymentForm">
+        <div id="PaymentForm" style={{marginTop:'5%'}}>
           <Cards
             cvc={this.state.cvc}
             expiry={this.state.expiry}
@@ -31,7 +31,7 @@ export default class PaymentForm extends React.Component {
             name={this.state.name}
             number={this.state.number}
           />
-          <form>
+          <form style={{textAlign:'center',marginTop:'1%',marginBottom:'1%'}}>
               <input
               type="tel"
               name="number"
@@ -39,7 +39,7 @@ export default class PaymentForm extends React.Component {
               onChange={this.handleInputChange}
               onFocus={this.handleInputFocus}
             />
-            ...
+
           </form>
         </div>
       );

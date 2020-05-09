@@ -55,7 +55,7 @@ render(){
   return (
     <div>
     <Navbar/>    
-   <div>
+   <div style={{marginTop:'2%'}}>
    <div style={{display: 'flex', justifyContent: 'space-evenly',flexWrap: 'wrap', paddingLeft:'10%' ,width:'90%'}}>
      {details}
 </div>
