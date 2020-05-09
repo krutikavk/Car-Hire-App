@@ -140,7 +140,7 @@ export default class Cardetails extends Component {
     componentDidMount() {
         let selectedCarId = localStorage.getItem("selectedcar");
         console.log(selectedCarId)
-        axios.get('http://localhost:8080/api/vehicles/' + selectedCarId)
+        axios.get('http://34.217.126.203:8080/api/vehicles/' + selectedCarId)
             .then(response => {
                 console.log(response);
                 this.setState({
