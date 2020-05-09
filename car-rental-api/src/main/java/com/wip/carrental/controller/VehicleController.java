@@ -7,8 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.wip.carrental.controller.exceptions.ResourceNotFoundException;
-import com.wip.carrental.model.Reservation;
-import com.wip.carrental.model.SearchRequestBody;
+import com.wip.carrental.model.*;
 import com.wip.carrental.repository.ReservationRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.wip.carrental.model.ParkingLocation;
-import com.wip.carrental.model.Vehicle;
 import com.wip.carrental.repository.ParkingLocationRepository;
 import com.wip.carrental.repository.VehicleRepository;
 
@@ -47,22 +44,36 @@ public class VehicleController {
         return vehicleRepository.findById(vehicleId);
     }
 
-
-    //Get average reviews for vehicle
     @GetMapping("/vehicles/{vehicleId}/reviews")
-    public float getAverageRatingForVehicle(@PathVariable Long vehicleId) {
-        Iterable<Reservation> reservation = reservationRepository.findAll();
-        float totalRating = 0;
-        int countRating = 0;
-        while (reservation.iterator().hasNext()) {
-            Reservation r = reservation.iterator().next();
+    public ArrayList<Review> getAllReviewsForVehicle(@PathVariable Long vehicleId) {
+        ArrayList<Reservation> reservations = (ArrayList<Reservation>) reservationRepository.findAll();
+        ArrayList<Review> reviews = new ArrayList<>();
+        for (Reservation r : reservations) {
             if (r.getVehicle().getVehicleId() == vehicleId) {
-                totalRating += r.getReview().getRating();
-                countRating++;
+                reviews.add(r.getReview());
             }
         }
 
-        return totalRating / countRating;
+        return reviews;
+    }
+
+    @GetMapping("/vehicles/{vehicleId}/rating")
+    public float getAverageRatingForVehicle(@PathVariable Long vehicleId) {
+        ArrayList<Reservation> reservations = (ArrayList<Reservation>) reservationRepository.findAll();
+        int totalCount = 0;
+        float rating = 0;
+        for (Reservation r : reservations) {
+            if (r.getVehicle().getVehicleId() == vehicleId) {
+                rating += r.getReview().getRating();
+                totalCount++;
+            }
+        }
+
+        if (totalCount < 2) {
+            return rating;
+        }
+
+        return rating / totalCount;
     }
 
 
@@ -92,7 +103,7 @@ public class VehicleController {
         try {
             ArrayList<ParkingLocation> parkingLocations = (ArrayList<ParkingLocation>) parkingLocationRepository.findAll();
 
-            String requestCity = location.getCity()== null ? "" : location.getCity();
+            String requestCity = location.getCity() == null ? "" : location.getCity();
             String type = location.getType() == null ? "" : location.getType();
             List<ParkingLocation> cityLocations = parkingLocations.stream().filter(s -> s.getCity().toLowerCase().contains(requestCity.toLowerCase())).collect(Collectors.toList());
 
