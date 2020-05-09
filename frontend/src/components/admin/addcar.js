@@ -69,7 +69,7 @@ export default class Addcar extends Component  {
 
       }
        // console.log(data)
-        axios.post('http://34.217.126.203:8080/api/vehicles/' + this.state.locationid , data)
+        axios.post('http://localhost:8080/api/vehicles/' + this.state.locationid , data)
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){

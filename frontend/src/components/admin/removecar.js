@@ -49,7 +49,7 @@ export default class Removecar extends Component  {
       e.preventDefault();
         
         console.log(this.state.vehicleId)
-        axios.delete('http://34.217.126.203:8080/api/vehicles/' + this.state.vehicleId)
+        axios.delete('http://localhost:8080/api/vehicles/' + this.state.vehicleId)
             .then(response => {  
               console.log(response)  
                 if(response.status === 200){

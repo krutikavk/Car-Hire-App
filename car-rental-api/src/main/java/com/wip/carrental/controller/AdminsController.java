@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://18.237.161.178:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @Api(value = "Admin Management System")
 public class AdminsController {
 

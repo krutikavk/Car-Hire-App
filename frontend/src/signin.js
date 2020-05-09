@@ -56,7 +56,7 @@ export default class Signin extends Component {
     handleClick(e) {
         e.preventDefault();
         const data = {driverEmailId: this.state.email, driverPassword: this.state.password}
-        axios.post('http://34.217.126.203:8080/api/drivers/login', data).then(response => {
+        axios.post('http://localhost:8080/api/drivers/login', data).then(response => {
             if (response.status === 200) {
                 localStorage.setItem("email", this.state.email)
                 window.open('/userHome', "_self");

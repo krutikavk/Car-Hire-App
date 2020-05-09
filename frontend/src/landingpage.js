@@ -32,7 +32,7 @@ export default class Landingpage extends Component {
       type:localStorage.getItem("type")
     }
   
-    axios.post('http://34.217.126.203:8080/api/vehicles/search',data)
+    axios.post('http://localhost:8080/api/vehicles/search',data)
             .then((response) => {              
               console.log(response.data);
               this.setState({

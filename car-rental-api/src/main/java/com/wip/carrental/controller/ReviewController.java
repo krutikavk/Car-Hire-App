@@ -20,7 +20,7 @@ import com.wip.carrental.repository.ReviewRepository;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://18.237.161.178:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReviewController {
 	
 	@Autowired
