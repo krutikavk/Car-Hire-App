@@ -67,7 +67,7 @@ Frontend is built on ReactJS as it is a light-weight library built over JavaScri
 
 ## Continous Integration 
 
-![](CIPipelin.png)
+![](CIPipeLine.png)
 We used Jenkins for our continous integration purpose when we push the code to the githib Jenkins runs the build and tells the status of the build if it fails via Email.
 
 ## Documentation 
