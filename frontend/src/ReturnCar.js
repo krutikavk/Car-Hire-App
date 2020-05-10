@@ -36,7 +36,7 @@ export default class ReturnCar extends Component{
 
   buttonClick=(e)=>{
     let id=localStorage.getItem("reservationId")
-    axios.put('http://loclahost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/end').then(response => {  
+    axios.put('http://localhost:8080/api/reservation/'+localStorage.getItem("reservationID")+'/end').then(response => {  
       if(response.status === 200){
           localStorage.removeItem("selectedcar");
         alert("Trip Ended")

@@ -116,7 +116,7 @@ export default class Cardetails extends Component {
 
         //let email="user3@carrental.com"
         //window.open('/Pickup', "_self");
-        axios.post("http://loclahost:8080/api/reservation?driverEmailId=" + email + "&vehicle_id=" + selectedCarId, data)
+        axios.post("http://localhost:8080/api/reservation?driverEmailId=" + email + "&vehicle_id=" + selectedCarId, data)
             .then(response => {
                     if (response.status === 200) {
                         localStorage.setItem("reservationID", response.data.reservationId)
@@ -140,7 +140,7 @@ export default class Cardetails extends Component {
     componentDidMount() {
         let selectedCarId = localStorage.getItem("selectedcar");
         console.log(selectedCarId)
-        axios.get('http://loclahost:8080/api/vehicles/' + selectedCarId)
+        axios.get('http://localhost:8080/api/vehicles/' + selectedCarId)
             .then(response => {
                 console.log(response);
                 this.setState({
