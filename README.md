@@ -2,10 +2,17 @@
 
 # Team
 
-1. Sai Chaitanya Dasari
-2. Krutika Katelia
-3. Sathya Sri
-4. Yashwant Khade
+* Sai Chaitanya Dasari </br>
+I handled varying parts in the project including Admin module in backend, Amazon AWS deployment, and UI development, and documentation.
+
+* Krutika Katelia </br>
+I handled the development of the entire Reservations + Reviews module including the functional APIs, Driver/Drivercard modules, integration and regression testing for backend, and documentation.
+
+* Sathya Sri </br>
+I handled frontend UI development for User/Admin landing pages and reservation components and their integration with backend.
+
+* Yashwant Khade </br>
+I have handled the development of entire Vehicle and ParkingLocation modules at backend, API development for special functionalities like custom vehicle search, complete security module of the backend module using JWT, and testing of the backend APIs along with integration with frontend, and documentation.
 
 ## Abstract
 
@@ -70,19 +77,19 @@ Frontend is built on ReactJS as it is a light-weight library built over JavaScri
 ![](CIPipeLine.png)
 We used Jenkins for our continous integration purpose when we push the code to the githib Jenkins runs the build and tells the status of the build if it fails via Email.
 
-## Documentation 
-</br>
+## Documentation </br>
+
 ### Sprint Task Sheet
-Documentation/Cmpe202 Sprint Task Sheet.xlsx
+Folder: Documentation/Cmpe202 Sprint Task Sheet.xlsx
 
 ### Project journal
-Documentation/ProjectJournal.md
+Folder: Documentation/ProjectJournal.md
 
 ### XP Values
-Documentation/XPValues.md
+FOlder: Documentation/XPValues.md
 
 ### UI Wireframes
-Documentation/UI Wireframes
+Folder: Documentation/UI Wireframes
 
 ### Design Doc
 https://docs.google.com/document/d/1DM46SGXyhCMIH70hC72ufU-x_5uT-EtUg1gDs10Lwmk/edit
