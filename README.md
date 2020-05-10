@@ -1,6 +1,6 @@
 #  Car Hire Application for Anybody with a Driver's License
 
-# Team
+## Team
 
 * Sai Chaitanya Dasari </br>
 I handled varying parts in the project including Admin module in backend, Amazon AWS deployment, and UI development, and documentation.
@@ -22,7 +22,7 @@ We have developed a Spring MVC based web application to create a eco system wher
 FrontEnd : React </br>
 Backend : Java Springboot with Hibernate </br>
 Testing: Postman </br>
-Cloud Deployment: AWS Autoscaling, Docker, AWS ELB, AWS API Gateway
+Cloud Deployment: AWS Autoscaling with CloudWatch alarm, Docker, AWS ELB, AWS API Gateway
 
 ## Features
 
@@ -86,7 +86,7 @@ Folder: Documentation/Cmpe202 Sprint Task Sheet.xlsx
 Folder: Documentation/ProjectJournal.md
 
 ### XP Values
-FOlder: Documentation/XPValues.md
+Folder: Documentation/XPValues.md
 
 ### UI Wireframes
 Folder: Documentation/UI Wireframes
