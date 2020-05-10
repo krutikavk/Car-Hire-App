@@ -66,6 +66,8 @@ We will be using SRPING MVC Java APIs to fetch the values from the Models. Since
 Frontend is built on ReactJS as it is a light-weight library built over JavaScript, which doesn't re-render the entire DOM on change of components on the browser, rather it just re-renders the changed components. Hence ReactJS would improve application performance
 
 ## Continous Integration 
+
+![](CIPipelin.png)
 We used Jenkins for our continous integration purpose when we push the code to the githib Jenkins runs the build and tells the status of the build if it fails via Email.
 
 ## Documentation 
