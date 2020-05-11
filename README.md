@@ -3,7 +3,7 @@
 ## Team
 
 * Sai Chaitanya Dasari </br>
-I handled varying parts in the project including Admin module in backend, Amazon AWS deployment, and UI development, and documentation.
+I handled varying parts in the project including Admin module in backend and frontend, dockerized the whole application using Maven and deployed on AWS load balancer with Auto Scaling connecting to AWS RDS, and UI development along with CI with Jenkins, and documentation.
 
 * Krutika Katelia </br>
 I handled the development of the entire Reservations + Reviews module including the functional APIs, Driver/Drivercard modules, integration and regression testing for backend, and documentation.
